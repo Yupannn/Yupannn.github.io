@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yupannn.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="小小括号能有什么坏心思呢 引入括号序列问题就是：在给定条件下求合法括号序列（的个数） 括号序列当然就是序列中只有左括号（“（”）和右括号（“）”）这两种字符的序列 我们将合法的括号序列定义为： 把左括号看作+1，把右括号看作-1，保证任意一个前缀和大于等于0，且总和为0的括号序列 例：合法： （）、（（））、（）（（）（））…… 不合法： （、（（）、）（）、（）（））…… 毕竟我们实际上并不在意">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【DP专题】括号序列">
+<meta property="og:url" content="https://yupannn.github.io/2023/07/16/dpkuahao/index.html">
+<meta property="og:site_name" content="盂盘的blog">
+<meta property="og:description" content="小小括号能有什么坏心思呢 引入括号序列问题就是：在给定条件下求合法括号序列（的个数） 括号序列当然就是序列中只有左括号（“（”）和右括号（“）”）这两种字符的序列 我们将合法的括号序列定义为： 把左括号看作+1，把右括号看作-1，保证任意一个前缀和大于等于0，且总和为0的括号序列 例：合法： （）、（（））、（）（（）（））…… 不合法： （、（（）、）（）、（）（））…… 毕竟我们实际上并不在意">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/cz15ya40.png">
+<meta property="article:published_time" content="2023-07-16T09:15:44.000Z">
+<meta property="article:modified_time" content="2024-10-06T09:20:09.290Z">
+<meta property="article:author" content="Yupannn">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/cz15ya40.png">
+
+
+<link rel="canonical" href="https://yupannn.github.io/2023/07/16/dpkuahao/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yupannn.github.io/2023/07/16/dpkuahao/","path":"2023/07/16/dpkuahao/","title":"【DP专题】括号序列"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【DP专题】括号序列 | 盂盘的blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">盂盘的blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%85%E8%AF%95%E4%B8%80%E4%B8%8B"><span class="nav-number">2.</span> <span class="nav-text">浅试一下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%97%E5%AF%B8%E5%90%8E%E5%86%8D%E8%BF%9B%E4%B8%80%E5%B0%BA"><span class="nav-number">3.</span> <span class="nav-text">得寸后再进一尺</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B2%E7%BA%BF%E6%95%91%E5%9B%BD"><span class="nav-number">4.</span> <span class="nav-text">曲线救国</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yupannn</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/07/16/dpkuahao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【DP专题】括号序列 | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【DP专题】括号序列
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-16 17:15:44" itemprop="dateCreated datePublished" datetime="2023-07-16T17:15:44+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-06 17:20:09" itemprop="dateModified" datetime="2024-10-06T17:20:09+08:00">2024-10-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><del>小小括号能有什么坏心思呢</del></p>
+<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>括号序列问题就是：在给定条件下求合法括号序列（的个数）</p>
+<p>括号序列当然就是序列中只有左括号（“（”）和右括号（“）”）这两种字符的序列</p>
+<p>我们将合法的括号序列定义为：</p>
+<p>把左括号看作+1，把右括号看作-1，保证任意一个前缀和大于等于0，且总和为0的括号序列</p>
+<p>例：合法： （）、（（））、（）（（）（））……</p>
+<p>不合法： （、（（）、）（）、（）（））……</p>
+<p>毕竟我们实际上并不在意左右括号长什么样子，只关心它们之间的关系，</p>
+<p>所以可以用其他任何满足这些关系的一对东西来替代：</p>
+<p>贴了一段题里的描述：</p>
+<ol>
+<li><p>空串是合法的括号序列</p>
+</li>
+<li><p>若字符串 S 是合法括号序列，那么 [ S ]和 ( S ) 也都是合法的括号序列</p>
+</li>
+<li><p>若字符串 A 和 B 都是合法的括号序列，那么 AB（两字符串拼接起来）也是合法的括号序列</p>
+</li>
+</ol>
+<h3 id="浅试一下"><a href="#浅试一下" class="headerlink" title="浅试一下"></a>浅试一下</h3><p>题目：Codeforces314E</p>
+<p><del>本篇既然叫DP专题当然要用DP呗</del></p>
+<p>考虑DP的原因主要在于，一条括号连缀而下，无后效性非常清楚非常完美</p>
+<p>想象从左往右递推时每遇到一个右括号就把左边还留着的左括号消去一个</p>
+<p>令dp[i][j]表示当前到第i个字符，现在左边还剩下j个左括号</p>
+<p>（如果在递推时，出现 j&lt;0 的情况，说明右括号多出来了，而左边的左括号已经消光了不能再与它匹配，可以判断此括号序列不存在合法的情况）</p>
+<p>那么分三种情况考虑</p>
+<p>若第i+1个字符是左括号，则能转移到dp[i+1][j+1]</p>
+<p>若第i+1个字符是右括号，则能转移到dp[i+1][j-1]</p>
+<p>若第i+1个字符是问号，则能转移到dp[i+1][j-1]与dp[i+1][j+1]</p>
+<p>最终dp[n][0]就是方案总数啦</p>
+<p>时间复杂度为 O(n^2)</p>
+<h3 id="得寸后再进一尺"><a href="#得寸后再进一尺" class="headerlink" title="得寸后再进一尺"></a>得寸后再进一尺</h3><p>题目：bzoj4922</p>
+<p>表面上说求括号序列，其实和上面的完全不同</p>
+<p>首先注意到输入给的括号序列不一定合法</p>
+<p>为了看得清楚些，（反正每个序列内部的合法序列并不影响判断序列之间连起来是否合法）</p>
+<p>对于每个括号序列，把左边的左括号和右边的右括号对消，最后能得到一坨这样的东西： </p>
+<p>))…))((…(( </p>
+<p>就是x个右括号然后y个左括号，记作(x,y)</p>
+<p>好吧，先别想着枚举和图论，我们还是要不忘初心（DP）</p>
+<p>首先设计状态时肯定有“从前往后考虑每一个序列”这一维，1～n，O(N)</p>
+<p>那第二维呢？</p>
+<p>瞎想一下后想到已考虑过的左括号和右括号的个数</p>
+<p>但三维略大了吧……得把后面两个合并成一维</p>
+<p>又想到前面有个+1和-1的那个性质</p>
+<p>可以把第二维设为左右括号个数之差，即已考虑过的序列整体的前缀和<br>我们还是把左括号看成+1，右括号看成-1，同样是保证任意一个前缀大于等于0，且总和为0。 </p>
+<p>那就是每一个给定的序列都是 先-Li再+Ri，Li是对消后左端右括号的数量，Li是对消后右端左括号的数量</p>
+<p>然后依次拼起来之后任何一个前缀都大于等于0</p>
+<p>设f[i][j]为 前i个括号序列-1与+1的和为j个时选出括号序列最长的长度和</p>
+<p>也就是 前i个括号序列左括号比右括号多j个时的最长的长度和</p>
+<p>转移时考虑下一个括号序列选不选即可</p>
+<p>Len[i]为排完序后第i个括号序列的长度</p>
+<p>f[i+1][j-L[i+1]+R[i+1]]&lt;–f[i][j] + len[i+1] (j&gt;&#x3D;L[i+1]) </p>
+<p>f[i+1][j]&lt;–f[i][j]</p>
+<p>最后答案就是f[n][0]</p>
+<p>等等，我们再重看一下题目，它输入时可没指定这些序列的顺序啊！</p>
+<p>我们刚咋就默认了按输入的顺序从左往右DP呢……</p>
+<p>难道要枚举序列的初始顺序再分别DP吗？</p>
+<p>当然不用！</p>
+<h3 id="曲线救国"><a href="#曲线救国" class="headerlink" title="曲线救国"></a>曲线救国</h3><p>先来看另一道貌似风马牛不相及的题目</p>
+<p>BZOJ3709</p>
+<p>其实这两道题实质上完全相同</p>
+<p>每只怪物相当于一段对消过后的括号序列，比如 ）））（（（</p>
+<p>左边的右括号相当于-1，有几个右括号就代表回血之前消耗了多少血</p>
+<p>右边的左括号相当于+1，有几个左括号就代表回血回了多少血</p>
+<p>初始的血量就相当于初始时已经有一段对应长度的左括号了</p>
+<p>这样一来，这道题就转变成了求</p>
+<p>是否存在一种顺序，使得连括号序列时（不管在哪一个序列的哪一个括号上）不会出现前缀和小于0的情况</p>
+<p>现在暂时忘掉什么括号序列，关注这道题本身！</p>
+<p>发现我们竟然可以直接贪心！</p>
+<p>怪兽可分为两种，一种是杀了它可以加血的，另一种是掉血的</p>
+<p>容易想到最优策略应该是先杀那些可以加血的，再杀另一种</p>
+<p>1：如果a[i]-d[i]&gt;0，说明打掉这个怪兽有血可恢复，那么血量会变多</p>
+<p>明显我们按照伤害d[i]从小到大排序即可，然后一个个杀下来</p>
+<p>2：如果a[i]-d[i]&lt;0，说明会亏血</p>
+<p>一个精妙的想法就是，最后剩余的血量值，假设是x，那么x是固定的，然后可以看作初始血量为x，怪兽的属性a,d交换，这样就和上一种情况一样了，有一个形象的称呼：“时光倒流”（如图）</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/cz15ya40.png"></p>
+<p>既然这题可以这样排序以确保最优策略，那括号序列那道题也能这样排！</p>
+<p>对括号序列排序：</p>
+<p>1.连了之后能增加左括号数量的排在前，会减少左括号的排在后</p>
+<p>2.对于能增加左括号数量的序列，再按这个序列自身左括号的数量从小到大排</p>
+<p>3.对于能减少左括号数量的序列，按这个序列自身右括号的数量从大到小排</p>
+<p>排完序后再从左往右DP</p>
+<p>DP的状态数为N*len，转移的时间复杂度为O(len)</p>
+<p>复杂度O(N<em>len</em>len)</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/11/wangluoliu/" rel="prev" title="网络流算法">
+                  <i class="fa fa-angle-left"></i> 网络流算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/dpzhengshu/" rel="next" title="【DP专题】整数划分">
+                  【DP专题】整数划分 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yupannn</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

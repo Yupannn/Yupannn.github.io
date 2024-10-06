@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -642,6 +642,393 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/07/16/dpzhengshu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/16/dpzhengshu/" class="post-title-link" itemprop="url">【DP专题】整数划分</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-16 17:17:24" itemprop="dateCreated datePublished" datetime="2023-07-16T17:17:24+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-06 17:18:59" itemprop="dateModified" datetime="2024-10-06T17:18:59+08:00">2024-10-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>1.求把n划分成k个正整数的方案数？ </p>
+<p>2.求把n划分成互不相同k个正整数的方案数？ </p>
+<p>3.求把n划分成k个不大于m的互不相同正整数的方案数？ </p>
+<p>4.求把n划分成k个奇数的方案数？</p>
+<p>5.…………………………</p>
+<p><del>问得我人都麻了</del></p>
+<h3 id="问题1：求把n划分成k个正整数的方案数"><a href="#问题1：求把n划分成k个正整数的方案数" class="headerlink" title="问题1：求把n划分成k个正整数的方案数"></a>问题1：求把n划分成k个正整数的方案数</h3><p>脑容量告急，先来想下暴力dp</p>
+<p>设dp[i][j][sum]前i个数，选了j个数，和为sum的方案数是多少</p>
+<p>答案就是 dp[n][k][n]，考虑下一个数选几个来转移即可</p>
+<p>状态是n<em>k</em>n，转移是 O(sum&#x2F;i)</p>
+<p>均摊O(n<em>k</em>n*log(n))，复杂度有些高</p>
+<p>按完全背包写的话可以做到O(n<em>k</em>n)</p>
+<p>更好的写法：</p>
+<p><del>妙妙屋警告</del></p>
+<p>数形结合yyds</p>
+<p>将i被划分成j个数的样子表示出来</p>
+<p>例如：i&#x3D;22,j&#x3D;4</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/gvtxogb6.png"></p>
+<p>第k列代表划分后的第k个数（保证这k个数从左到右非严格递减，这样就不会出现划分重复的情况）</p>
+<p>如22&#x3D;7+6+6+3（左图）&#x3D;7+7+7+1（右图）</p>
+<p>用dp[i][j]表示把i划分成j个数的方案数</p>
+<p>再来想怎么进行状态转移呢？</p>
+<p>从后往前想，dp[i][j]只可能是由前面的状态向下（i增加）或向右（j增加）得来</p>
+<p>也就是左图和右图两种情况，蓝色部分为增加的部分</p>
+<p>但光是考虑dp[i-j][j]会发现，这是只考虑了左图的情况，少算了右图（有1）的可能性</p>
+<p>所以还要加上dp[i-1][j-1]</p>
+<p>最终的式子：dp[i][j]&#x3D;dp[i-j][j]+dp[i-1][j-1]</p>
+<p>神奇！时间复杂度只有O(N^2)</p>
+<h3 id="问题2：求把n划分成互不相同k个正整数的方案数"><a href="#问题2：求把n划分成互不相同k个正整数的方案数" class="headerlink" title="问题2：求把n划分成互不相同k个正整数的方案数"></a>问题2：求把n划分成互不相同k个正整数的方案数</h3><p>和前面的大同小异</p>
+<p>暴力dp的做法:</p>
+<p>设dp[i][j][sum]前i个数，选了j个数，和为sum的方案数是多少</p>
+<p>答案就是dp[n][k][n]，考虑下一个数选不选来转移即可</p>
+<p>本质是个0&#x2F;1背包， 复杂度O(n<em>k</em>n)</p>
+<p>数形结合的做法：</p>
+<p>再写一遍前面推出的式子：dp[i][j]&#x3D;dp[i-j][j]+dp[i-1][j-1]</p>
+<p>要限制没有相同的数字，只需要改其中一个字符就行了！</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/zdyedqbc.png"></p>
+<p>看着这张图应该可以猜到</p>
+<p>正解是：dp[i][j]&#x3D;dp[i-j][j]+dp[i-j][j-1]</p>
+<p>复杂度甚至比上题还低一点！</p>
+<p>可以举反例来证明：</p>
+<p>如果还用原先那个式子，不改的话，</p>
+<p>dp[i-1][j-1]代表把i-1划分成j-1个互不相同的数</p>
+<p>它肯定包括了“划分后最后一列数为1”的情况，</p>
+<p>而这样一来，第i-1列数&#x3D;&#x3D;第i列数&#x3D;&#x3D;1，与前提条件相矛盾</p>
+<p>所以得去掉下面一整行，而不是只去掉右边一个，来保证往左算的时候不产生矛盾</p>
+<h3 id="问题3：求把n划分成k个不大于m的互不相同正整数的方案数"><a href="#问题3：求把n划分成k个不大于m的互不相同正整数的方案数" class="headerlink" title="问题3：求把n划分成k个不大于m的互不相同正整数的方案数"></a>问题3：求把n划分成k个不大于m的互不相同正整数的方案数</h3><p>暴力的就不写了<del>懒</del></p>
+<p>将问题2的式子再拿来修修补补</p>
+<p>在原来的基础上把超过m的情况减掉就行了</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/6k7nr8tu.png"></p>
+<p>式子为dp[i][j]&#x3D;dp[i-j][j]+dp[i-j][j-1]-dp[i-(m+1)][j-1]</p>
+<h3 id="老师的寄语"><a href="#老师的寄语" class="headerlink" title="老师的寄语"></a>老师的寄语</h3><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ok5ob668.png"></p>
+<h3 id="问题4：求把n划分成k个奇数的方案数（可重复数字纯奇纯偶划分）"><a href="#问题4：求把n划分成k个奇数的方案数（可重复数字纯奇纯偶划分）" class="headerlink" title="问题4：求把n划分成k个奇数的方案数（可重复数字纯奇纯偶划分）"></a>问题4：求把n划分成k个奇数的方案数（可重复数字纯奇纯偶划分）</h3><p><del>其实我觉得这题比前面几题还简单些(</del></p>
+<p>设 g[i][j]:将i划分为j个偶数</p>
+<p>f[i][j]:将i划分为j个奇数</p>
+<p>如图</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/zdyedqbc.png"></p>
+<p>左图对应i是偶数的情况：g[i][j]&#x3D;f[i-j][j]</p>
+<p>右图对应i是奇数的情况：f[i][j]&#x3D;f[i-1][j-1]+g[i-j][j]</p>
+<p>（不可重复也是一样的）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/07/16/dpkuahao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/16/dpkuahao/" class="post-title-link" itemprop="url">【DP专题】括号序列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-16 17:15:44" itemprop="dateCreated datePublished" datetime="2023-07-16T17:15:44+08:00">2023-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-06 17:20:09" itemprop="dateModified" datetime="2024-10-06T17:20:09+08:00">2024-10-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><del>小小括号能有什么坏心思呢</del></p>
+<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>括号序列问题就是：在给定条件下求合法括号序列（的个数）</p>
+<p>括号序列当然就是序列中只有左括号（“（”）和右括号（“）”）这两种字符的序列</p>
+<p>我们将合法的括号序列定义为：</p>
+<p>把左括号看作+1，把右括号看作-1，保证任意一个前缀和大于等于0，且总和为0的括号序列</p>
+<p>例：合法： （）、（（））、（）（（）（））……</p>
+<p>不合法： （、（（）、）（）、（）（））……</p>
+<p>毕竟我们实际上并不在意左右括号长什么样子，只关心它们之间的关系，</p>
+<p>所以可以用其他任何满足这些关系的一对东西来替代：</p>
+<p>贴了一段题里的描述：</p>
+<ol>
+<li><p>空串是合法的括号序列</p>
+</li>
+<li><p>若字符串 S 是合法括号序列，那么 [ S ]和 ( S ) 也都是合法的括号序列</p>
+</li>
+<li><p>若字符串 A 和 B 都是合法的括号序列，那么 AB（两字符串拼接起来）也是合法的括号序列</p>
+</li>
+</ol>
+<h3 id="浅试一下"><a href="#浅试一下" class="headerlink" title="浅试一下"></a>浅试一下</h3><p>题目：Codeforces314E</p>
+<p><del>本篇既然叫DP专题当然要用DP呗</del></p>
+<p>考虑DP的原因主要在于，一条括号连缀而下，无后效性非常清楚非常完美</p>
+<p>想象从左往右递推时每遇到一个右括号就把左边还留着的左括号消去一个</p>
+<p>令dp[i][j]表示当前到第i个字符，现在左边还剩下j个左括号</p>
+<p>（如果在递推时，出现 j&lt;0 的情况，说明右括号多出来了，而左边的左括号已经消光了不能再与它匹配，可以判断此括号序列不存在合法的情况）</p>
+<p>那么分三种情况考虑</p>
+<p>若第i+1个字符是左括号，则能转移到dp[i+1][j+1]</p>
+<p>若第i+1个字符是右括号，则能转移到dp[i+1][j-1]</p>
+<p>若第i+1个字符是问号，则能转移到dp[i+1][j-1]与dp[i+1][j+1]</p>
+<p>最终dp[n][0]就是方案总数啦</p>
+<p>时间复杂度为 O(n^2)</p>
+<h3 id="得寸后再进一尺"><a href="#得寸后再进一尺" class="headerlink" title="得寸后再进一尺"></a>得寸后再进一尺</h3><p>题目：bzoj4922</p>
+<p>表面上说求括号序列，其实和上面的完全不同</p>
+<p>首先注意到输入给的括号序列不一定合法</p>
+<p>为了看得清楚些，（反正每个序列内部的合法序列并不影响判断序列之间连起来是否合法）</p>
+<p>对于每个括号序列，把左边的左括号和右边的右括号对消，最后能得到一坨这样的东西： </p>
+<p>))…))((…(( </p>
+<p>就是x个右括号然后y个左括号，记作(x,y)</p>
+<p>好吧，先别想着枚举和图论，我们还是要不忘初心（DP）</p>
+<p>首先设计状态时肯定有“从前往后考虑每一个序列”这一维，1～n，O(N)</p>
+<p>那第二维呢？</p>
+<p>瞎想一下后想到已考虑过的左括号和右括号的个数</p>
+<p>但三维略大了吧……得把后面两个合并成一维</p>
+<p>又想到前面有个+1和-1的那个性质</p>
+<p>可以把第二维设为左右括号个数之差，即已考虑过的序列整体的前缀和<br>我们还是把左括号看成+1，右括号看成-1，同样是保证任意一个前缀大于等于0，且总和为0。 </p>
+<p>那就是每一个给定的序列都是 先-Li再+Ri，Li是对消后左端右括号的数量，Li是对消后右端左括号的数量</p>
+<p>然后依次拼起来之后任何一个前缀都大于等于0</p>
+<p>设f[i][j]为 前i个括号序列-1与+1的和为j个时选出括号序列最长的长度和</p>
+<p>也就是 前i个括号序列左括号比右括号多j个时的最长的长度和</p>
+<p>转移时考虑下一个括号序列选不选即可</p>
+<p>Len[i]为排完序后第i个括号序列的长度</p>
+<p>f[i+1][j-L[i+1]+R[i+1]]&lt;–f[i][j] + len[i+1] (j&gt;&#x3D;L[i+1]) </p>
+<p>f[i+1][j]&lt;–f[i][j]</p>
+<p>最后答案就是f[n][0]</p>
+<p>等等，我们再重看一下题目，它输入时可没指定这些序列的顺序啊！</p>
+<p>我们刚咋就默认了按输入的顺序从左往右DP呢……</p>
+<p>难道要枚举序列的初始顺序再分别DP吗？</p>
+<p>当然不用！</p>
+<h3 id="曲线救国"><a href="#曲线救国" class="headerlink" title="曲线救国"></a>曲线救国</h3><p>先来看另一道貌似风马牛不相及的题目</p>
+<p>BZOJ3709</p>
+<p>其实这两道题实质上完全相同</p>
+<p>每只怪物相当于一段对消过后的括号序列，比如 ）））（（（</p>
+<p>左边的右括号相当于-1，有几个右括号就代表回血之前消耗了多少血</p>
+<p>右边的左括号相当于+1，有几个左括号就代表回血回了多少血</p>
+<p>初始的血量就相当于初始时已经有一段对应长度的左括号了</p>
+<p>这样一来，这道题就转变成了求</p>
+<p>是否存在一种顺序，使得连括号序列时（不管在哪一个序列的哪一个括号上）不会出现前缀和小于0的情况</p>
+<p>现在暂时忘掉什么括号序列，关注这道题本身！</p>
+<p>发现我们竟然可以直接贪心！</p>
+<p>怪兽可分为两种，一种是杀了它可以加血的，另一种是掉血的</p>
+<p>容易想到最优策略应该是先杀那些可以加血的，再杀另一种</p>
+<p>1：如果a[i]-d[i]&gt;0，说明打掉这个怪兽有血可恢复，那么血量会变多</p>
+<p>明显我们按照伤害d[i]从小到大排序即可，然后一个个杀下来</p>
+<p>2：如果a[i]-d[i]&lt;0，说明会亏血</p>
+<p>一个精妙的想法就是，最后剩余的血量值，假设是x，那么x是固定的，然后可以看作初始血量为x，怪兽的属性a,d交换，这样就和上一种情况一样了，有一个形象的称呼：“时光倒流”（如图）</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/cz15ya40.png"></p>
+<p>既然这题可以这样排序以确保最优策略，那括号序列那道题也能这样排！</p>
+<p>对括号序列排序：</p>
+<p>1.连了之后能增加左括号数量的排在前，会减少左括号的排在后</p>
+<p>2.对于能增加左括号数量的序列，再按这个序列自身左括号的数量从小到大排</p>
+<p>3.对于能减少左括号数量的序列，按这个序列自身右括号的数量从大到小排</p>
+<p>排完序后再从左往右DP</p>
+<p>DP的状态数为N*len，转移的时间复杂度为O(len)</p>
+<p>复杂度O(N<em>len</em>len)</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/07/11/wangluoliu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/11/wangluoliu/" class="post-title-link" itemprop="url">网络流算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-11 17:11:34" itemprop="dateCreated datePublished" datetime="2023-07-11T17:11:34+08:00">2023-07-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-06 17:13:28" itemprop="dateModified" datetime="2024-10-06T17:13:28+08:00">2024-10-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h2><p>暑假培训Day3笔记</p>
+<p>大概有三种选择</p>
+<h3 id="Ford-Fulkerson-算法-（朴素增广路算法）"><a href="#Ford-Fulkerson-算法-（朴素增广路算法）" class="headerlink" title="Ford-Fulkerson 算法 （朴素增广路算法）"></a>Ford-Fulkerson 算法 （朴素增广路算法）</h3><p>给每条边添加一个反向边用于“反悔”，反向边流量初始为0</p>
+<p>每次从起点到重点DFS找一条有流量的道路，然后增广这条路</p>
+<p>复杂度与流量有关</p>
+<h3 id="EK-算法（BFS找增广路）"><a href="#EK-算法（BFS找增广路）" class="headerlink" title="EK 算法（BFS找增广路）"></a>EK 算法（BFS找增广路）</h3><p>每次找一条最短路径增广<br>复杂度 $ O(VE^2) $</p>
+<h3 id="Dinic算法"><a href="#Dinic算法" class="headerlink" title="Dinic算法"></a>Dinic算法</h3><p>更常用，也更快</p>
+<p>BFS先分层，然后DFS进行多路增广最短路径</p>
+<p>（当前弧优化，一条边增广一次后就不会再次增广了，所以下次增广时不需要再考虑这条边，直接继续下一条了）</p>
+<p>然后BFS和DFS轮流迭代</p>
+<p>在二分图中 $ O(VE^{0.5}) $ </p>
+<p>一般图中$ O(V^{2E}) $,通常跑的非常快</p>
+<p>老师给的板子</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> Dinic&#123;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> N 100005</span></span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> M 300005</span></span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line">		<span class="type">int</span> flow,t,next;</span><br><span class="line">	&#125;e[M];<span class="type">int</span> ecnt,head[N];</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">addedge</span><span class="params">(<span class="type">int</span> f,<span class="type">int</span> t,<span class="type">int</span> fl)</span></span>&#123;</span><br><span class="line">		e[++ecnt]=(edge)&#123;fl,t,head[f]&#125;;head[f]=ecnt;</span><br><span class="line">		e[++ecnt]=(edge)&#123;<span class="number">0</span>,f,head[t]&#125;;head[t]=ecnt;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//----------------</span></span><br><span class="line">	<span class="type">int</span> S,T;</span><br><span class="line">	<span class="type">int</span> dis[N],cur[N];</span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">BFS</span><span class="params">()</span></span>&#123; <span class="comment">// 按距离分层 </span></span><br><span class="line">		<span class="built_in">memset</span>(dis,<span class="number">0x3f</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">		dis[S]=<span class="number">0</span>;queue&lt;<span class="type">int</span>&gt; que;que.<span class="built_in">push</span>(S);</span><br><span class="line">		<span class="keyword">while</span>(!que.<span class="built_in">empty</span>())&#123;</span><br><span class="line">			<span class="type">int</span> u=que.<span class="built_in">front</span>();que.<span class="built_in">pop</span>();</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i=head[u];i;i=e[i].next)&#123; <span class="comment">// 遍历出边 </span></span><br><span class="line">				<span class="keyword">if</span>(e[i].flow!=<span class="number">0</span>&amp;&amp;dis[e[i].t]==<span class="number">0x3f3f3f3f</span>)&#123; <span class="comment">// 如果这条路还有流量，并且没访问过另一个点 </span></span><br><span class="line">					dis[e[i].t]=dis[u]<span class="number">+1</span>,que.<span class="built_in">push</span>(e[i].t);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dis[T]!=INF; <span class="comment">// 看看终点T能不能到 </span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">DFS</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> a)</span></span>&#123; <span class="comment">// Dinic 多路增广， u是当前点，a是有多少流量可于到达这个点 </span></span><br><span class="line">		<span class="keyword">if</span>(u==T||a==<span class="number">0</span>) <span class="keyword">return</span> a; <span class="comment">// 到了 or 没流量了 </span></span><br><span class="line">		<span class="type">int</span> ret=<span class="number">0</span>; <span class="comment">// 返回从当前点能增广到 T 的总流量 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> &amp;i=cur[u];i;i=e[i].next)&#123; <span class="comment">// 遍历边表, 当前弧 &amp;i = cur[u] </span></span><br><span class="line">			<span class="keyword">if</span>(e[i].flow==<span class="number">0</span>||dis[e[i].t]!=dis[u]<span class="number">+1</span>) <span class="keyword">continue</span>; <span class="comment">// 边上没流量 or 不是最短路 </span></span><br><span class="line">			<span class="type">int</span> f=<span class="built_in">DFS</span>(e[i].t,a&lt;e[i].flow? a:e[i].flow); <span class="comment">// DFS(e[i].t, min(a,e[i].flow));</span></span><br><span class="line">			<span class="keyword">if</span>(f)&#123; <span class="comment">// 如果我们找到了增广路，并且流了f的流量 </span></span><br><span class="line">				e[i].flow-=f;e[i^<span class="number">1</span>].flow+=f; <span class="comment">// 调整剩余容量和反向边 </span></span><br><span class="line">				ret+=f;a-=f; <span class="comment">// 返回值多了f，还能增广的总流量a少了f </span></span><br><span class="line">				<span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> ret; <span class="comment">// 流量预算a，用完了 </span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">work</span><span class="params">(<span class="type">int</span> S1,<span class="type">int</span> T1)</span></span>&#123;</span><br><span class="line">		S=S1,T=T1; <span class="comment">// S是源点 T是汇点 </span></span><br><span class="line">		<span class="type">int</span> ret=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(<span class="built_in">BFS</span>())&#123; <span class="comment">// BFS 构建按照距离分层的图 </span></span><br><span class="line">			<span class="built_in">memcpy</span>(cur,head,<span class="built_in">sizeof</span>(cur)); <span class="comment">// 重置当前弧 </span></span><br><span class="line">			ret+=<span class="built_in">DFS</span>(S1,INF); <span class="comment">// 试图增广 </span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">initialize</span><span class="params">()</span></span>&#123; <span class="comment">// 初始化 </span></span><br><span class="line">		ecnt=<span class="number">1</span>;<span class="built_in">memset</span>(head,<span class="number">0</span>,<span class="built_in">sizeof</span>(head));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">undef</span> N</span></span><br><span class="line">	<span class="meta">#<span class="keyword">undef</span> M</span></span><br><span class="line">	<span class="meta">#<span class="keyword">undef</span> INF</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3376">模板题</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 220</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 10010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line">	LL flow;<span class="type">int</span> t,next;</span><br><span class="line">&#125;e[M];</span><br><span class="line"><span class="type">int</span> ecnt,head[N],cur[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">addedge</span><span class="params">(<span class="type">int</span> f,<span class="type">int</span> t,LL fl)</span></span>&#123;</span><br><span class="line">	e[++ecnt]=(edge)&#123;fl,t,head[f]&#125;;head[f]=ecnt;</span><br><span class="line">	e[++ecnt]=(edge)&#123;<span class="number">0</span>,f,head[t]&#125;;head[t]=ecnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> S,T;</span><br><span class="line">LL dis[N];</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">BFS</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">-1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">	dis[S]=<span class="number">0</span>;queue&lt;<span class="type">int</span>&gt; que;que.<span class="built_in">push</span>(S);</span><br><span class="line">	<span class="keyword">while</span>(!que.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=que.<span class="built_in">front</span>();que.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];i;i=e[i].next)&#123;</span><br><span class="line">			<span class="keyword">if</span>(e[i].flow!=<span class="number">0</span>&amp;&amp;dis[e[i].t]==<span class="number">-1</span>)&#123; </span><br><span class="line">				dis[e[i].t]=dis[u]<span class="number">+1</span>,que.<span class="built_in">push</span>(e[i].t);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dis[T]!=<span class="number">-1</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">DFS</span><span class="params">(<span class="type">int</span> u,LL a)</span></span>&#123; </span><br><span class="line">	<span class="keyword">if</span>(u==T||a==<span class="number">0</span>) <span class="keyword">return</span> a; </span><br><span class="line">	LL ret=<span class="number">0</span>; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> &amp;i=cur[u];i;i=e[i].next)&#123; </span><br><span class="line">		<span class="keyword">if</span>(e[i].flow==<span class="number">0</span>||dis[e[i].t]!=dis[u]<span class="number">+1</span>) <span class="keyword">continue</span>; </span><br><span class="line">		<span class="type">int</span> f=<span class="built_in">DFS</span>(e[i].t,a&lt;e[i].flow? a:e[i].flow); </span><br><span class="line">		<span class="keyword">if</span>(f)&#123; </span><br><span class="line">			e[i].flow-=f;e[i^<span class="number">1</span>].flow+=f; </span><br><span class="line">			ret+=f;a-=f; </span><br><span class="line">			<span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> ret; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">	LL res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">BFS</span>())&#123;</span><br><span class="line">		<span class="built_in">memcpy</span>(cur,head,<span class="built_in">sizeof</span>(cur));</span><br><span class="line">		 res+=<span class="built_in">DFS</span>(S,INF); </span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> res;	</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ecnt=<span class="number">1</span>;<span class="built_in">memset</span>(head,<span class="number">0</span>,<span class="built_in">sizeof</span>(head));</span><br><span class="line">	<span class="type">int</span> n,m,u,v;LL w;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m&gt;&gt;S&gt;&gt;T;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>,&amp;u,&amp;v,&amp;w);</span><br><span class="line">		<span class="built_in">addedge</span>(u,v,w);</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">work</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/06/25/shulun/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -890,6 +1277,94 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/05/27/pinghengshu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/05/27/pinghengshu/" class="post-title-link" itemprop="url">平衡树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-27 17:22:45" itemprop="dateCreated datePublished" datetime="2023-05-27T17:22:45+08:00">2023-05-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-06 17:23:41" itemprop="dateModified" datetime="2024-10-06T17:23:41+08:00">2024-10-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一点优化"><a href="#一点优化" class="headerlink" title="一点优化"></a>一点优化</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1908">洛谷P1908</a></p>
+<p>这本来不是一道用平衡树做的题，</p>
+<p>但是毕竟最近在学平衡树，就想用这个没人用的方法试一试</p>
+<p>Treap 模板一套奉上，然后不出意料地超时……</p>
+<p>为了过这个题，我把 Treap 做了一定改进</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>传统方法里，为了避免左右子树大小悬殊，引进了 优先度 这个东西</p>
+<p>但是用完全随机的方式赋予优先度这个事，总感觉不太靠谱……</p>
+<p>（ 万一你一下子随机出一条链？！）</p>
+<p>再来考虑维护平衡树的意义就在于： </p>
+<p>避免左右两子树一长一短，退化成链</p>
+<h4 id="所以为何不直接靠左右子树的-size-判断需不需要旋转呢？"><a href="#所以为何不直接靠左右子树的-size-判断需不需要旋转呢？" class="headerlink" title="所以为何不直接靠左右子树的 size 判断需不需要旋转呢？"></a>所以为何不直接靠左右子树的 size 判断需不需要旋转呢？</h4><p>基本思路就是看哪棵子树节点太多，打破了平衡，就往哪边旋</p>
+<p>改了之后比原先的能快一些，对于这个题肯定是够用的了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1000010</span></span><br><span class="line"><span class="type">int</span> ch[N][<span class="number">2</span>],val[N],size[N],cnt[N],tot,root;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">build</span><span class="params">(<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	val[++tot]=v;</span><br><span class="line">	cnt[tot]=<span class="number">1</span>;</span><br><span class="line">	size[tot]=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//不再需要优先度啦，还可以节省点空间</span></span><br><span class="line">	<span class="keyword">return</span> tot;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> id)</span></span>&#123;</span><br><span class="line">	size[id]=size[ch[id][<span class="number">0</span>]]+size[ch[id][<span class="number">1</span>]]+cnt[id];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">rotate</span><span class="params">(<span class="type">int</span> &amp;id,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> temp=ch[id][d^<span class="number">1</span>];</span><br><span class="line">	ch[id][d^<span class="number">1</span>]=ch[temp][d];</span><br><span class="line">	ch[temp][d]=id;</span><br><span class="line">	id=temp;</span><br><span class="line">	<span class="built_in">pushup</span>(ch[id][d]);<span class="built_in">pushup</span>(id);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断 id 是否需要向 d 方向旋转</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check_rotate</span><span class="params">(<span class="type">int</span> id,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> root2=ch[id][d^<span class="number">1</span>];<span class="comment">//旋之后的新根节点</span></span><br><span class="line">	<span class="type">int</span> s1=size[root2]-size[ch[id][d]];</span><br><span class="line">    <span class="comment">//旋之前的两棵子树节点数之差</span></span><br><span class="line">	<span class="type">int</span> s2=size[ch[root2][d^<span class="number">1</span>]];</span><br><span class="line">	s2=size[id]-cnt[root]-s2;</span><br><span class="line">    <span class="comment">//旋之后的两棵新子树节点数之差</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">abs</span>(s2)&lt;<span class="built_in">abs</span>(s1))	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">//维护两棵子树节点数大致相同</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> &amp;id,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!id)&#123;id=<span class="built_in">build</span>(v);<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(v==val[id])	cnt[id]++;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="type">int</span> d=(v&lt;val[id])?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">insert</span>(ch[id][d],v);</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">check_rotate</span>(id,d^<span class="number">1</span>))	<span class="built_in">rotate</span>(id,d^<span class="number">1</span>);</span><br><span class="line">	&#125;<span class="built_in">pushup</span>(id);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_rank</span><span class="params">(<span class="type">int</span> id,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!id)	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(v==val[id])	<span class="keyword">return</span> size[ch[id][<span class="number">0</span>]]<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">if</span>(v&lt;val[id])	<span class="keyword">return</span> <span class="built_in">get_rank</span>(ch[id][<span class="number">0</span>],v);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">get_rank</span>(ch[id][<span class="number">1</span>],v)+size[ch[id][<span class="number">0</span>]]+cnt[id];	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	root=<span class="built_in">build</span>(-INF),ch[root][<span class="number">1</span>]=<span class="built_in">build</span>(INF);</span><br><span class="line">	<span class="built_in">pushup</span>(root);</span><br><span class="line">	<span class="type">int</span> n;cin&gt;&gt;n;</span><br><span class="line">	<span class="type">int</span> a[n<span class="number">+1</span>];LL ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=n;i;i--)&#123;</span><br><span class="line">		<span class="built_in">insert</span>(root,a[i]);</span><br><span class="line">		ans+=<span class="built_in">get_rank</span>(root,a[i])<span class="number">-2</span>;</span><br><span class="line">        <span class="comment">//a[i]的排名为get_rank(root,a[i])-1</span></span><br><span class="line">        <span class="comment">//比a[i]小的数的个数为 排名数-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/03/19/PandNP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -977,6 +1452,9 @@
 
 
 
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/default-index/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/default-index/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
 </div>
   </main>

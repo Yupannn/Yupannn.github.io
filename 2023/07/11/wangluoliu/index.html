@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yupannn.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="网络流暑假培训Day3笔记 大概有三种选择 Ford-Fulkerson 算法 （朴素增广路算法）给每条边添加一个反向边用于“反悔”，反向边流量初始为0 每次从起点到重点DFS找一条有流量的道路，然后增广这条路 复杂度与流量有关 EK 算法（BFS找增广路）每次找一条最短路径增广复杂度 $ O(VE^2) $ Dinic算法更常用，也更快 BFS先分层，然后DFS进行多路增广最短路径 （当前弧优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络流算法">
+<meta property="og:url" content="https://yupannn.github.io/2023/07/11/wangluoliu/index.html">
+<meta property="og:site_name" content="盂盘的blog">
+<meta property="og:description" content="网络流暑假培训Day3笔记 大概有三种选择 Ford-Fulkerson 算法 （朴素增广路算法）给每条边添加一个反向边用于“反悔”，反向边流量初始为0 每次从起点到重点DFS找一条有流量的道路，然后增广这条路 复杂度与流量有关 EK 算法（BFS找增广路）每次找一条最短路径增广复杂度 $ O(VE^2) $ Dinic算法更常用，也更快 BFS先分层，然后DFS进行多路增广最短路径 （当前弧优化">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-11T09:11:34.000Z">
+<meta property="article:modified_time" content="2024-10-06T09:13:28.998Z">
+<meta property="article:author" content="Yupannn">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://yupannn.github.io/2023/07/11/wangluoliu/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yupannn.github.io/2023/07/11/wangluoliu/","path":"2023/07/11/wangluoliu/","title":"网络流算法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>网络流算法 | 盂盘的blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">盂盘的blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%B5%81"><span class="nav-number">1.</span> <span class="nav-text">网络流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ford-Fulkerson-%E7%AE%97%E6%B3%95-%EF%BC%88%E6%9C%B4%E7%B4%A0%E5%A2%9E%E5%B9%BF%E8%B7%AF%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">Ford-Fulkerson 算法 （朴素增广路算法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EK-%E7%AE%97%E6%B3%95%EF%BC%88BFS%E6%89%BE%E5%A2%9E%E5%B9%BF%E8%B7%AF%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">EK 算法（BFS找增广路）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dinic%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">Dinic算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yupannn</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/07/11/wangluoliu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="网络流算法 | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络流算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-11 17:11:34" itemprop="dateCreated datePublished" datetime="2023-07-11T17:11:34+08:00">2023-07-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-06 17:13:28" itemprop="dateModified" datetime="2024-10-06T17:13:28+08:00">2024-10-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h2><p>暑假培训Day3笔记</p>
+<p>大概有三种选择</p>
+<h3 id="Ford-Fulkerson-算法-（朴素增广路算法）"><a href="#Ford-Fulkerson-算法-（朴素增广路算法）" class="headerlink" title="Ford-Fulkerson 算法 （朴素增广路算法）"></a>Ford-Fulkerson 算法 （朴素增广路算法）</h3><p>给每条边添加一个反向边用于“反悔”，反向边流量初始为0</p>
+<p>每次从起点到重点DFS找一条有流量的道路，然后增广这条路</p>
+<p>复杂度与流量有关</p>
+<h3 id="EK-算法（BFS找增广路）"><a href="#EK-算法（BFS找增广路）" class="headerlink" title="EK 算法（BFS找增广路）"></a>EK 算法（BFS找增广路）</h3><p>每次找一条最短路径增广<br>复杂度 $ O(VE^2) $</p>
+<h3 id="Dinic算法"><a href="#Dinic算法" class="headerlink" title="Dinic算法"></a>Dinic算法</h3><p>更常用，也更快</p>
+<p>BFS先分层，然后DFS进行多路增广最短路径</p>
+<p>（当前弧优化，一条边增广一次后就不会再次增广了，所以下次增广时不需要再考虑这条边，直接继续下一条了）</p>
+<p>然后BFS和DFS轮流迭代</p>
+<p>在二分图中 $ O(VE^{0.5}) $ </p>
+<p>一般图中$ O(V^{2E}) $,通常跑的非常快</p>
+<p>老师给的板子</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> Dinic&#123;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> N 100005</span></span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> M 300005</span></span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line">		<span class="type">int</span> flow,t,next;</span><br><span class="line">	&#125;e[M];<span class="type">int</span> ecnt,head[N];</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">addedge</span><span class="params">(<span class="type">int</span> f,<span class="type">int</span> t,<span class="type">int</span> fl)</span></span>&#123;</span><br><span class="line">		e[++ecnt]=(edge)&#123;fl,t,head[f]&#125;;head[f]=ecnt;</span><br><span class="line">		e[++ecnt]=(edge)&#123;<span class="number">0</span>,f,head[t]&#125;;head[t]=ecnt;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//----------------</span></span><br><span class="line">	<span class="type">int</span> S,T;</span><br><span class="line">	<span class="type">int</span> dis[N],cur[N];</span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">BFS</span><span class="params">()</span></span>&#123; <span class="comment">// 按距离分层 </span></span><br><span class="line">		<span class="built_in">memset</span>(dis,<span class="number">0x3f</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">		dis[S]=<span class="number">0</span>;queue&lt;<span class="type">int</span>&gt; que;que.<span class="built_in">push</span>(S);</span><br><span class="line">		<span class="keyword">while</span>(!que.<span class="built_in">empty</span>())&#123;</span><br><span class="line">			<span class="type">int</span> u=que.<span class="built_in">front</span>();que.<span class="built_in">pop</span>();</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i=head[u];i;i=e[i].next)&#123; <span class="comment">// 遍历出边 </span></span><br><span class="line">				<span class="keyword">if</span>(e[i].flow!=<span class="number">0</span>&amp;&amp;dis[e[i].t]==<span class="number">0x3f3f3f3f</span>)&#123; <span class="comment">// 如果这条路还有流量，并且没访问过另一个点 </span></span><br><span class="line">					dis[e[i].t]=dis[u]<span class="number">+1</span>,que.<span class="built_in">push</span>(e[i].t);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dis[T]!=INF; <span class="comment">// 看看终点T能不能到 </span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">DFS</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> a)</span></span>&#123; <span class="comment">// Dinic 多路增广， u是当前点，a是有多少流量可于到达这个点 </span></span><br><span class="line">		<span class="keyword">if</span>(u==T||a==<span class="number">0</span>) <span class="keyword">return</span> a; <span class="comment">// 到了 or 没流量了 </span></span><br><span class="line">		<span class="type">int</span> ret=<span class="number">0</span>; <span class="comment">// 返回从当前点能增广到 T 的总流量 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> &amp;i=cur[u];i;i=e[i].next)&#123; <span class="comment">// 遍历边表, 当前弧 &amp;i = cur[u] </span></span><br><span class="line">			<span class="keyword">if</span>(e[i].flow==<span class="number">0</span>||dis[e[i].t]!=dis[u]<span class="number">+1</span>) <span class="keyword">continue</span>; <span class="comment">// 边上没流量 or 不是最短路 </span></span><br><span class="line">			<span class="type">int</span> f=<span class="built_in">DFS</span>(e[i].t,a&lt;e[i].flow? a:e[i].flow); <span class="comment">// DFS(e[i].t, min(a,e[i].flow));</span></span><br><span class="line">			<span class="keyword">if</span>(f)&#123; <span class="comment">// 如果我们找到了增广路，并且流了f的流量 </span></span><br><span class="line">				e[i].flow-=f;e[i^<span class="number">1</span>].flow+=f; <span class="comment">// 调整剩余容量和反向边 </span></span><br><span class="line">				ret+=f;a-=f; <span class="comment">// 返回值多了f，还能增广的总流量a少了f </span></span><br><span class="line">				<span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> ret; <span class="comment">// 流量预算a，用完了 </span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">work</span><span class="params">(<span class="type">int</span> S1,<span class="type">int</span> T1)</span></span>&#123;</span><br><span class="line">		S=S1,T=T1; <span class="comment">// S是源点 T是汇点 </span></span><br><span class="line">		<span class="type">int</span> ret=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(<span class="built_in">BFS</span>())&#123; <span class="comment">// BFS 构建按照距离分层的图 </span></span><br><span class="line">			<span class="built_in">memcpy</span>(cur,head,<span class="built_in">sizeof</span>(cur)); <span class="comment">// 重置当前弧 </span></span><br><span class="line">			ret+=<span class="built_in">DFS</span>(S1,INF); <span class="comment">// 试图增广 </span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">initialize</span><span class="params">()</span></span>&#123; <span class="comment">// 初始化 </span></span><br><span class="line">		ecnt=<span class="number">1</span>;<span class="built_in">memset</span>(head,<span class="number">0</span>,<span class="built_in">sizeof</span>(head));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">undef</span> N</span></span><br><span class="line">	<span class="meta">#<span class="keyword">undef</span> M</span></span><br><span class="line">	<span class="meta">#<span class="keyword">undef</span> INF</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3376">模板题</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 220</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 10010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line">	LL flow;<span class="type">int</span> t,next;</span><br><span class="line">&#125;e[M];</span><br><span class="line"><span class="type">int</span> ecnt,head[N],cur[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">addedge</span><span class="params">(<span class="type">int</span> f,<span class="type">int</span> t,LL fl)</span></span>&#123;</span><br><span class="line">	e[++ecnt]=(edge)&#123;fl,t,head[f]&#125;;head[f]=ecnt;</span><br><span class="line">	e[++ecnt]=(edge)&#123;<span class="number">0</span>,f,head[t]&#125;;head[t]=ecnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> S,T;</span><br><span class="line">LL dis[N];</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">BFS</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">-1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">	dis[S]=<span class="number">0</span>;queue&lt;<span class="type">int</span>&gt; que;que.<span class="built_in">push</span>(S);</span><br><span class="line">	<span class="keyword">while</span>(!que.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=que.<span class="built_in">front</span>();que.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];i;i=e[i].next)&#123;</span><br><span class="line">			<span class="keyword">if</span>(e[i].flow!=<span class="number">0</span>&amp;&amp;dis[e[i].t]==<span class="number">-1</span>)&#123; </span><br><span class="line">				dis[e[i].t]=dis[u]<span class="number">+1</span>,que.<span class="built_in">push</span>(e[i].t);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dis[T]!=<span class="number">-1</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">DFS</span><span class="params">(<span class="type">int</span> u,LL a)</span></span>&#123; </span><br><span class="line">	<span class="keyword">if</span>(u==T||a==<span class="number">0</span>) <span class="keyword">return</span> a; </span><br><span class="line">	LL ret=<span class="number">0</span>; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> &amp;i=cur[u];i;i=e[i].next)&#123; </span><br><span class="line">		<span class="keyword">if</span>(e[i].flow==<span class="number">0</span>||dis[e[i].t]!=dis[u]<span class="number">+1</span>) <span class="keyword">continue</span>; </span><br><span class="line">		<span class="type">int</span> f=<span class="built_in">DFS</span>(e[i].t,a&lt;e[i].flow? a:e[i].flow); </span><br><span class="line">		<span class="keyword">if</span>(f)&#123; </span><br><span class="line">			e[i].flow-=f;e[i^<span class="number">1</span>].flow+=f; </span><br><span class="line">			ret+=f;a-=f; </span><br><span class="line">			<span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> ret; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">	LL res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">BFS</span>())&#123;</span><br><span class="line">		<span class="built_in">memcpy</span>(cur,head,<span class="built_in">sizeof</span>(cur));</span><br><span class="line">		 res+=<span class="built_in">DFS</span>(S,INF); </span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> res;	</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ecnt=<span class="number">1</span>;<span class="built_in">memset</span>(head,<span class="number">0</span>,<span class="built_in">sizeof</span>(head));</span><br><span class="line">	<span class="type">int</span> n,m,u,v;LL w;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m&gt;&gt;S&gt;&gt;T;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>,&amp;u,&amp;v,&amp;w);</span><br><span class="line">		<span class="built_in">addedge</span>(u,v,w);</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">work</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/25/shulun/" rel="prev" title="数论算法">
+                  <i class="fa fa-angle-left"></i> 数论算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/16/dpkuahao/" rel="next" title="【DP专题】括号序列">
+                  【DP专题】括号序列 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yupannn</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
