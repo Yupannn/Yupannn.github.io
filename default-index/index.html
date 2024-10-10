@@ -119,12 +119,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -141,6 +141,99 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2024/10/08/enigma/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/10/08/enigma/" class="post-title-link" itemprop="url">Enigma恩尼格玛密码机</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-08 16:48:33" itemprop="dateCreated datePublished" datetime="2024-10-08T16:48:33+08:00">2024-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-10 18:09:55" itemprop="dateModified" datetime="2024-10-10T18:09:55+08:00">2024-10-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="https://pic.imgdb.cn/item/67078cc2d29ded1a8c974da5.webp" alt="Enigma"></p>
+<p>这张照片上像是打字机一样的机器，它的名字叫 Enigma，音译过来就是恩尼格玛<br>它可不止能够打字，<del>虽然我标题已经写出来了但还是得再说一遍</del>，它是一台用于加密与解密的密码机！<br>（打字机的出现比它早不少，合理推测这就是以打字机为灵感发明出来的……？）</p>
+<p>在它诞生的年代——20世纪初，那是个战火纷飞的年代，可没有什么计算机，Enigma是纯靠机械和电气（或许还有人力）完成数据的加密与解密的，让我叹服！</p>
+<p>不过更让人佩服的却是它的那群可敬的“敌人”……</p>
+<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>谈起二战欧洲战场中的解码英雄，人人都知道，大名鼎鼎的人工智能之父——艾伦·图灵</p>
+<p>但，这个故事的主角是另一群人，他们来自芬兰。<br>有句话说得很精妙：“在密码分析领域，恐惧乃成功之母。”<br>芬兰作为一个在德国和苏联俩大国之间夹缝求生的小国，因为对战争的恐惧，不得不去硬着头皮，千方百计地试图获取信息，于是接下了一个烫手山芋——破解德军的Enigma。</p>
+<p>彼时，由于法国和波兰之间的军事合作协议，波兰人从法国那得到了不少关于Enigma的情报——法国人认为它太难破解，并且觉得德国不会有什么大动作，于是松懈下来把情报都交给波兰了。而这正合波兰的意。</p>
+<p>情报如下：Enigma机的操作指南、德军编码的具体规定、商用Enigma机一台、军用Enigma内部结构的详细描述</p>
+<p>看起来相当详尽，几乎都可以复现对方加密的全过程了，这解起来还不简单吗？<br>那这就大错特错了，因为其中最为关键的密钥还不知道呢！</p>
+<p>先来看下Enigma机的结构</p>
+<p><img src="https://pic.imgdb.cn/item/67078cd8d29ded1a8c976c65.png" alt="wiring"></p>
+<p>从图中可以看到其中几个最核心的板块：<br>**Keyboard 键盘 **<br><strong>Lightboard 灯板</strong><br>**Plugboard 插线板 **<br><strong>Wheel&#x2F;Rotor 转子</strong><br><strong>Reflector 反射器</strong></p>
+<p>这些板块之间由多根电线相连，当操作员按下键盘上的一个键时，电流会顺着连线七弯八拐地抵达灯板，点亮对应的那个小灯泡，而键盘和灯板上各自有26个键&#x2F;灯泡，一一对应26个字母。按下的那个键是明文时，亮起的就是密文；按下的是密文时，亮起的就是明文。也就是说，操作员并不需要了解它的内部结构，就能快速地对数据进行处理。</p>
+<p>如上图，按下T后，亮起的是G，代表着对T这个字母加密后得到的密文就是G</p>
+<p>这样一看，怎么感觉还是很简单？<br>但Enigma可不同于那些简单替换密码（如凯撒密码），它其实是“复试替换密码”<br>Enigma的精髓(?)就在于<strong>转子</strong>这个结构。</p>
+<p>顾名思义，转子是可以转的——</p>
+<p><img src="https://pic.imgdb.cn/item/6707a7d2d29ded1a8cb3c829.jpg" alt="wheel"></p>
+<p>如上图，一台Enigma机中安了三个不同型号的转子，且每个转子上面都刻了26个字母，<br>操作员每按下一个键时，最右边的转子就会转一格，当它转了一周后就会带动中间的转子转一格<br>同理，当中间的转子转满一周时就会带动最左边的转子转一格<br>而对应槽之间的连线又不变，所以字母之间的对应关系就全都会改变<br>用这种方式，就做到了每按下一个键，密钥都改变一次</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -262,7 +355,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-06 16:08:04" itemprop="dateModified" datetime="2024-10-06T16:08:04+08:00">2024-10-06</time>
+      <time title="修改时间：2024-10-07 21:53:21" itemprop="dateModified" datetime="2024-10-07T21:53:21+08:00">2024-10-07</time>
     </span>
 
   
@@ -285,7 +378,7 @@
 <p>简直是最简单的加密措施了是不是？！<br>连小学生都能发明出来啊！</p>
 <hr>
 <p>放两个我在学校网安宣传周活动里看到的凯撒密码：<br>1.Txkdufkvrxk<br>2.Ufafxk<br>瞪眼法对我来说太难了，所以当即写了个程序</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()&#123;</span><br><span class="line">	string a;cin&gt;&gt;a;</span><br><span class="line">	for(int i=0;i&lt;26;i++)&#123;</span><br><span class="line">		for(int j=0;j&lt;a.length();j++)&#123;</span><br><span class="line">			if(a[j]&gt;&#x27;a&#x27;)	cout&lt;&lt;(char)(&#x27;a&#x27;+(a[i]-&#x27;a&#x27;+i)%26);</span><br><span class="line">			else	cout&lt;&lt;(char)(&#x27;A&#x27;+(a[i]-&#x27;A&#x27;+i)%26);</span><br><span class="line">		&#125;cout&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()&#123;</span><br><span class="line">	string a;cin&gt;&gt;a;</span><br><span class="line">	for(int i=0;i&lt;26;i++)&#123;</span><br><span class="line">		for(int j=0;j&lt;a.length();j++)&#123;</span><br><span class="line">			if(a[j]&gt;=&#x27;a&#x27;)	cout&lt;&lt;(char)(&#x27;a&#x27;+(a[i]-&#x27;a&#x27;+i)%26);</span><br><span class="line">			else	cout&lt;&lt;(char)(&#x27;A&#x27;+(a[i]-&#x27;A&#x27;+i)%26);</span><br><span class="line">		&#125;cout&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>解出来是wangxinyuan和xidian</p>
 <h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><p>大名鼎鼎的非对称加密算法，影响范围相当地广<br>全称为……Republic Science Association? Rabbit Snake ant?<br>都不是，R,S,A分别为发明这套算法的三个人的姓氏首字母……</p>
 <p>它的设计思路主要基于：难以对大整数进行质因数分解<br>而证明过程主要基于欧拉定理</p>
@@ -1088,9 +1181,9 @@
 <li>x 和 y 的最小公约数 <strong>gcd(x,y)</strong></li>
 <li>x 和 y 的最大公倍数 <strong>lcm(x,y)</strong></li>
 </ul>
-<h5 id="一个很有用的定理"><a href="#一个很有用的定理" class="headerlink" title="一个很有用的定理"></a>一个很有用的定理</h5><h4 id="gcd-x-y-lcm-x-y-x-y"><a href="#gcd-x-y-lcm-x-y-x-y" class="headerlink" title="$ gcd( x , y ) * lcm ( x , y ) &#x3D; x * y $"></a>$ gcd( x , y ) * lcm ( x , y ) &#x3D; x * y $</h4><details >
+<h5 id="一个很有用的定理"><a href="#一个很有用的定理" class="headerlink" title="一个很有用的定理"></a>一个很有用的定理</h5><h4 id="gcd-x-y-lcm-x-y-x-y"><a href="#gcd-x-y-lcm-x-y-x-y" class="headerlink" title="$ gcd( x , y ) * lcm ( x , y ) &#x3D; x * y $"></a>$ gcd( x , y ) * lcm ( x , y ) &#x3D; x * y $</h4><details>
 <summary>证明</summary>
-<div >
+<div>
 将x和y分别进行质因数分解，得到
 
 <p>$ x&#x3D;A_1^{m1} *A_2^{m2} *A_3^{m3} …… *A_k^{mk}  $</p>
@@ -1110,7 +1203,7 @@
 <p>$ gcd(a,b)&#x3D;gcd(a,b \bmod a)&#x3D;(b \bmod a,a) $ </p>
 <details>
 <summary>证明</summary>
-<div >
+<div>
 设 $ d=gcd(a,b) $ 
 
 <p>设 $ b&#x3D;k*a+r  $</p>
@@ -1134,7 +1227,7 @@
 <p>（以下的 “&#x2F;“ 均表示整除（向下取整））<br>是否一定存在整数 x , y 使得 ax + by &#x3D; d 成立呢？</p>
 <details>
 <summary>证明</summary>
-<div >
+<div>
 
 <p>假设 ax + by 的最小正整数值为 s<br>$ 0 &lt;&#x3D;a \bmod s &lt; s $</p>
 <p>$ a \bmod s&#x3D;a-(a&#x2F;s)s&#x3D;a-(a&#x2F;s)(ax+by)&#x3D;(1-(a&#x2F;s)x)a+(-y(a&#x2F;s))b $</p>
@@ -1210,7 +1303,7 @@
 <p>事实上，对于任意整数 m，” $ ax+by&#x3D;m $ 有整数解 “的充要条件便是 m 是 d 的倍数</p>
 <details>
 <summary>证明</summary>
-<div >
+<div>
 充分性已经证过了，接下来证必要性：
 已知 ax + by = m 有整数解
 设 $ a=k_1d,b=k_2d $
@@ -1346,101 +1439,6 @@
 <p>改了之后比原先的能快一些，对于这个题肯定是够用的了</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1000010</span></span><br><span class="line"><span class="type">int</span> ch[N][<span class="number">2</span>],val[N],size[N],cnt[N],tot,root;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">build</span><span class="params">(<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	val[++tot]=v;</span><br><span class="line">	cnt[tot]=<span class="number">1</span>;</span><br><span class="line">	size[tot]=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//不再需要优先度啦，还可以节省点空间</span></span><br><span class="line">	<span class="keyword">return</span> tot;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> id)</span></span>&#123;</span><br><span class="line">	size[id]=size[ch[id][<span class="number">0</span>]]+size[ch[id][<span class="number">1</span>]]+cnt[id];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">rotate</span><span class="params">(<span class="type">int</span> &amp;id,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> temp=ch[id][d^<span class="number">1</span>];</span><br><span class="line">	ch[id][d^<span class="number">1</span>]=ch[temp][d];</span><br><span class="line">	ch[temp][d]=id;</span><br><span class="line">	id=temp;</span><br><span class="line">	<span class="built_in">pushup</span>(ch[id][d]);<span class="built_in">pushup</span>(id);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断 id 是否需要向 d 方向旋转</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check_rotate</span><span class="params">(<span class="type">int</span> id,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> root2=ch[id][d^<span class="number">1</span>];<span class="comment">//旋之后的新根节点</span></span><br><span class="line">	<span class="type">int</span> s1=size[root2]-size[ch[id][d]];</span><br><span class="line">    <span class="comment">//旋之前的两棵子树节点数之差</span></span><br><span class="line">	<span class="type">int</span> s2=size[ch[root2][d^<span class="number">1</span>]];</span><br><span class="line">	s2=size[id]-cnt[root]-s2;</span><br><span class="line">    <span class="comment">//旋之后的两棵新子树节点数之差</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">abs</span>(s2)&lt;<span class="built_in">abs</span>(s1))	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">//维护两棵子树节点数大致相同</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> &amp;id,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!id)&#123;id=<span class="built_in">build</span>(v);<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="keyword">if</span>(v==val[id])	cnt[id]++;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="type">int</span> d=(v&lt;val[id])?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">insert</span>(ch[id][d],v);</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">check_rotate</span>(id,d^<span class="number">1</span>))	<span class="built_in">rotate</span>(id,d^<span class="number">1</span>);</span><br><span class="line">	&#125;<span class="built_in">pushup</span>(id);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_rank</span><span class="params">(<span class="type">int</span> id,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!id)	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(v==val[id])	<span class="keyword">return</span> size[ch[id][<span class="number">0</span>]]<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">if</span>(v&lt;val[id])	<span class="keyword">return</span> <span class="built_in">get_rank</span>(ch[id][<span class="number">0</span>],v);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">get_rank</span>(ch[id][<span class="number">1</span>],v)+size[ch[id][<span class="number">0</span>]]+cnt[id];	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	root=<span class="built_in">build</span>(-INF),ch[root][<span class="number">1</span>]=<span class="built_in">build</span>(INF);</span><br><span class="line">	<span class="built_in">pushup</span>(root);</span><br><span class="line">	<span class="type">int</span> n;cin&gt;&gt;n;</span><br><span class="line">	<span class="type">int</span> a[n<span class="number">+1</span>];LL ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=n;i;i--)&#123;</span><br><span class="line">		<span class="built_in">insert</span>(root,a[i]);</span><br><span class="line">		ans+=<span class="built_in">get_rank</span>(root,a[i])<span class="number">-2</span>;</span><br><span class="line">        <span class="comment">//a[i]的排名为get_rank(root,a[i])-1</span></span><br><span class="line">        <span class="comment">//比a[i]小的数的个数为 排名数-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/03/19/PandNP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yupannn">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="盂盘的blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 盂盘的blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/19/PandNP/" class="post-title-link" itemprop="url">P and NP</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-03-19 17:31:10" itemprop="dateCreated datePublished" datetime="2023-03-19T17:31:10+08:00">2023-03-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-06 16:05:54" itemprop="dateModified" datetime="2024-10-06T16:05:54+08:00">2024-10-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="P-NP"><a href="#P-NP" class="headerlink" title="P &#x3D; NP ?"></a>P &#x3D; NP ?</h1><p>著名的千禧年七大难题之一<br><del>只要解决了它百万奖金等你来领</del></p>
-<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><strong>P</strong> 类：可以在多项式时间内<strong>解决</strong>的问题<br>（Polynomial 多项式）</p>
-<p><strong>NP</strong> 类：可以在多项式时间内<strong>验证</strong>的问题<br>（nondeterministic polynomial 非确定性多项式）</p>
-<p>像 找出一列数中的最大值、对一列数进行排序这样 可以找出一个多项式时间算法（ O(n) 或 O(n^a) ）的问题，我们都可以将其划分到 P 类</p>
-<ul>
-<li>我们很容易想到，P 类问题是包含在 NP 类问题内的</li>
-</ul>
-<p>毕竟如果对于一个问题，要是已经能在多项式时间内解决它找出它的解了，验证时直接将输入值和解比较一下就行了，这比较的过程肯定是在多项式时间内的</p>
-<hr>
-<p>对应地，考虑那些属于 NP 类，但又可能不属于 P 类的问题，<br>（也就是能在多项式时间内验证，但至今找不出一个多项式时间解法的问题）<br>它们可以通过 <strong>归约</strong> 归于一些较为精简的问题，即<br><strong>NPC</strong> （ C 指 Complete ）类</p>
-<h2 id="归约"><a href="#归约" class="headerlink" title="归约"></a>归约</h2><p>一种使一个 NP 问题和另一个 NP 问题等价的思路&#x2F;方法</p>
-<h4 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h4><p>给定一个问题 A ，你要怎么判断（证明）它是 NP 类？</p>
-<h4 id="归约的过程："><a href="#归约的过程：" class="headerlink" title="归约的过程："></a>归约的过程：</h4><p>找到另一个已知是 NP 类的问题 B ，使得可以在多项式时间内将 A 转换为 B （或者将 B 转换为 A ，这其实一个意思）<br>即输入相同时，两个问题的输出也一定相同，我们就可以说这两个问题等价<br>这样一来 A 就也属于 NP 类</p>
-<hr>
-<p>插播一则笑话：<br>一个数学家去应聘消防员，别人问他：“如果房子起火了，你应该怎么做？”<br>他给出的步骤完全正确。<br>又问：“那如果房子没有起火，你会怎么做？”<br>答：“我会把房子点燃，这样这个问题就归约为了上一个问题。”</p>
-<hr>
-<p>由此可知，归约能将无数个千变万化的问题缩减到几个精简的问题来研究<br>只要解决了这几个具有代表性的问题，就一定能解决与之同类的问题<br>这样就大大缩小了研究范围，给前路的探索带来了一线曙光！<br>而这些具有代表性的问题就被称为 <strong>NPC</strong> 类问题（ C 指 Complete ）</p>
-<p>所以， NPC 在这里指的不是什么非玩家角色，它是 NP 类的子集，可以由一些 NP 问题归约得到</p>
-<p>有了证明的工具，现在要找的就是哪些问题比较具有代表性，可以作为 NPC 类</p>
-<h2 id="NPC"><a href="#NPC" class="headerlink" title="NPC"></a>NPC</h2><h3 id="电路可满足性问题"><a href="#电路可满足性问题" class="headerlink" title="电路可满足性问题"></a>电路可满足性问题</h3><p>首先来想象一个简单的逻辑电路，它的基本元件有： <strong>与门、或门、非门</strong><br>（以下的 a 、b 的值都是 0 或 1）<br><strong>与门</strong>：输入 a 和 b，输出 a &amp; b<br><strong>或门</strong>：输入 a 和 b，输出 a | b<br><strong>非门</strong>：输入 a ，输出 !a<br>这几个逻辑门好像还有很多别名什么的（比如电路元素、布尔组合元素）<br>使用这三种逻辑运算就可以应对我们需要面对的任何问题啦<br>（事实上，非门本身就是由 与门 和 或门 组合而成的，用这两种其实就够了）<br>可满足性：对于这个电路，存在一组输入使得最终的输出为 1<br>那么电路可满足性问题就是：给定一个电路，判断这个电路是否是可满足的</p>
-<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
       
     </div>
 
