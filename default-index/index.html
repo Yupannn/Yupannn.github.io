@@ -277,7 +277,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-13 11:50:05" itemprop="dateModified" datetime="2024-10-13T11:50:05+08:00">2024-10-13</time>
+      <time title="修改时间：2024-10-16 22:05:00" itemprop="dateModified" datetime="2024-10-16T22:05:00+08:00">2024-10-16</time>
     </span>
 
   
@@ -301,7 +301,7 @@
 <p>看起来相当详尽，几乎都可以复现对方加密的全过程了，这解起来还不简单吗？<br>那这就大错特错了，因为其中最为关键的密钥还不知道呢！</p>
 <p>先来看下Enigma机的结构</p>
 <p><img src="https://pic.imgdb.cn/item/67078cd8d29ded1a8c976c65.png" alt="wiring"></p>
-<p>从图中可以看到其中几个最核心的板块：<br>**Keyboard 键盘 **<br><strong>Lightboard 灯板</strong><br>**Plugboard 插线板 **<br><strong>Wheel&#x2F;Rotor 转子</strong><br><strong>Reflector 反射器</strong></p>
+<p>从图中可以看到其中几个最核心的板块：<br><strong>Keyboard 键盘</strong><br><strong>Lightboard 灯板</strong><br><strong>Plugboard 插线板</strong><br><strong>Wheel&#x2F;Rotor 转子</strong><br><strong>Reflector 反射器</strong></p>
 <p>这些板块之间由多根电线相连，当操作员按下键盘上的一个键时，电流会顺着连线七弯八拐地抵达灯板，点亮对应的那个小灯泡，而键盘和灯板上各自有26个键&#x2F;灯泡，一一对应26个字母。按下的那个键是明文时，亮起的就是密文；按下的是密文时，亮起的就是明文。也就是说，操作员并不需要了解它的内部结构，就能快速地对数据进行处理。</p>
 <p>如上图，按下T后，亮起的是G，代表着对T这个字母加密后得到的密文就是G</p>
 <p>这样一看，怎么感觉还是很简单？<br>但Enigma可不同于那些简单替换密码（如凯撒密码），它其实是“复试替换密码”<br>Enigma的精髓(?)就在于<strong>转子</strong>这个结构。</p>
