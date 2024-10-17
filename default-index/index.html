@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,6 +141,87 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2024/10/16/tulun/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/10/16/tulun/" class="post-title-link" itemprop="url">图论概述</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-16 22:55:29" itemprop="dateCreated datePublished" datetime="2024-10-16T22:55:29+08:00">2024-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-17 16:52:53" itemprop="dateModified" datetime="2024-10-17T16:52:53+08:00">2024-10-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>打算来正经地补一下图论了<br><del>其实基本都是抄自老师的ppt</del></p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><h4 id="一个图是一个有序二元组-（V-E）"><a href="#一个图是一个有序二元组-（V-E）" class="headerlink" title="一个图是一个有序二元组 （V,E）"></a>一个图是一个有序二元组 （V,E）</h4><p>1.V是一个有限的非空集合，称为顶点集合，用 |V| 或 v(G) 或 v 表示顶点数<br>2.E是由V中的点组成的无序对构成的集合，称为边集，其元素称为边（同一点对可以出现多次），用 |E| 或 e(G) 或 e 表示边数</p>
+<h3 id="一些相关概念"><a href="#一些相关概念" class="headerlink" title="一些相关概念"></a>一些相关概念</h3><p><del>一些很简单的证明过程我就懒得写了</del></p>
+<p><strong>相邻</strong>：同一条边的两个端点称为相邻<br><strong>关联</strong>：一条边的端点和边相连<br><strong>环</strong>：端点重合的边（一个环算两个边）<br><strong>重边</strong>：端点相同的边<br><strong>有限图</strong>：顶点集和边集都是有限的图<br><strong>平凡图</strong>：只有一个顶点的图<br><strong>简单图</strong>：不含重边和环的图</p>
+<p><strong>顶点v的度数 d(v)</strong> :与v相关联的边的条数<br><strong>面f的度数 d(f)</strong> :与f相关联的边的条数<br><strong>最大度数</strong> $ \Delta (G)&#x3D;max { d(v)|v \in V } $<br><strong>最小度数</strong> $ \delta (G)&#x3D;min { d(v)|v \in V } $<br><strong>度和关系式</strong> $ \sum_{v \in V}d(v)&#x3D;2e $<br>（即所有点的度数之和为总边数的两倍）<br>$ \sum_{f \in F}d(f)&#x3D;2e $<br>（即所有面的度数之和为总边数的两倍）<br><strong>推论</strong>：在任何图中，奇度点（度数为奇数的点）个数为偶数</p>
+<p><strong>途径</strong>：图中点边交替出现的有限序列<br><strong>迹</strong>：一条边互不相同的途径<br><strong>路</strong>：一条点互不相同的迹<br><del>虽说这几个概念不同，但平时称呼起来好像都是混着用的</del><br><strong>Euler迹</strong>：经过图的每一条边的迹<br><strong>Euler环游&#x2F;欧拉回路</strong>：闭（起点和终点一样）的Euler迹<br><strong>Euler通路&#x2F;欧拉路径</strong>：开（起点和终点不同）的Euler迹<br><strong>Euler圈</strong>：存在Euler环游的图</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1200,254 +1281,6 @@
 
 
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/06/25/shulun/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yupannn">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="盂盘的blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 盂盘的blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/25/shulun/" class="post-title-link" itemprop="url">数论算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-25 19:45:53" itemprop="dateCreated datePublished" datetime="2023-06-25T19:45:53+08:00">2023-06-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-07 13:23:48" itemprop="dateModified" datetime="2024-10-07T13:23:48+08:00">2024-10-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
-<li>x 和 y 的最小公约数 <strong>gcd(x,y)</strong></li>
-<li>x 和 y 的最大公倍数 <strong>lcm(x,y)</strong></li>
-</ul>
-<h5 id="一个很有用的定理"><a href="#一个很有用的定理" class="headerlink" title="一个很有用的定理"></a>一个很有用的定理</h5><h4 id="gcd-x-y-lcm-x-y-x-y"><a href="#gcd-x-y-lcm-x-y-x-y" class="headerlink" title="$ gcd( x , y ) * lcm ( x , y ) &#x3D; x * y $"></a>$ gcd( x , y ) * lcm ( x , y ) &#x3D; x * y $</h4><details>
-<summary>证明</summary>
-<div>
-将x和y分别进行质因数分解，得到
-
-<p>$ x&#x3D;A_1^{m1} *A_2^{m2} *A_3^{m3} …… *A_k^{mk}  $</p>
-<p>$ y&#x3D;A_1^{n1} *A_2^{n2} *A_3^{n3} …… *A_k^{nk} $</p>
-<p>得到：</p>
-<p>$ x*y&#x3D;A_1^{m1+n1} *A_2^{m2+n2} …… *A_k^{mk+nk} $</p>
-<p>$ gcd(x,y)&#x3D;A_1^{min(m1,n1)} *A_2^{min(m2,n2)} …… *A_k^{min(mk,nk)} $</p>
-<p>$ lcm(x,y)&#x3D;A_1^{max(m1,n1)} *A_2^{max(m2,n2)} …… *A_k^{max(mk,nk)} $</p>
-<p>很显然， $ min(a,b)+max(a,b)&#x3D;a+b $</p>
-<p>$ gcd(x,y)*lcm(x,y)&#x3D;A_1^{min(m1,n1)+max(m1,n1)} *A_2^{min(m2,n2)+max(m2,n2)} …… *A_k^{min(mk,nk)+max(mk,nk)} &#x3D;x *y $</p>
-</div>
-
-</details>
-
-<hr>
-<h3 id="求gcd"><a href="#求gcd" class="headerlink" title="求gcd:"></a>求gcd:</h3><h3 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h3><p>核心的定理：<br>( 以下均假设 a 和 b 都为正数 且 a&lt;&#x3D;b )</p>
-<p>$ gcd(a,b)&#x3D;gcd(a,b \bmod a)&#x3D;(b \bmod a,a) $ </p>
-<details>
-<summary>证明</summary>
-<div>
-设 $ d=gcd(a,b) $ 
-
-<p>设 $ b&#x3D;k*a+r  $</p>
-<p>则 $ b \bmod a&#x3D;r&#x3D;b-k*a $</p>
-<p>又 $ d \mid b , d \mid a $</p>
-<p>有 $ d \mid (b \bmod a) $</p>
-<p>可知 d 既是 a 和 b 的最大公因数，又是 b 和 b mod a 的公因数<br>而 gcd( b , b mod a ) 肯定不会大于 gcd( a , b )<br>所以 d 同时也是 b 和 b mod a 的最大公因数</p>
-</div>
-</details>
-
-<hr>
-<p>现在再来思考怎样求出 gcd( a , b )<br>从上面这个定理得到启发，我们可以将求 gcd( a , b ) 的问题转化为求 gcd( b mod a,a ) 的问题<br>然后不断递归下去，直到不能再简化 a 和 b，也就是其中一个数为 0 的情况</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&gt;b)	<span class="keyword">return</span> <span class="built_in">gcd</span>(b,a);</span><br><span class="line">	<span class="keyword">if</span>(b%a==<span class="number">0</span>)	<span class="keyword">return</span> a; <span class="comment">//此时已经可以知道gcd=a了，不用再递归</span></span><br><span class="line">	<span class="comment">//例： gcd(3,6)=3  gcd(3,5)=gcd(2,3)=gcd(1,2)=1</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">gcd</span>(b%a,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当然，任何数和 0 之间是不能求gcd的，但是写代码时以求方便，可以直接递归到 0 这一层</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&gt;b)	<span class="keyword">return</span> <span class="built_in">gcd</span>(b,a);</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">0</span>)	<span class="keyword">return</span> b;</span><br><span class="line">	<span class="comment">//例： gcd(1,2)=gcd(0,1)=1</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">gcd</span>(b%a,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>顺水推舟，我们发现在求gcd的过程中，还可以同时求出许多其他有用的信息<br>比如，<strong>不定方程的一个解</strong></p>
-<p>从中看出了一个什么不定方程呢？<br>设 $ gcd(a,b)&#x3D;d $</p>
-<h3 id="ax-by-d"><a href="#ax-by-d" class="headerlink" title="$ ax+by&#x3D;d $"></a>$ ax+by&#x3D;d $</h3><hr>
-<p>（以下的 “&#x2F;“ 均表示整除（向下取整））<br>是否一定存在整数 x , y 使得 ax + by &#x3D; d 成立呢？</p>
-<details>
-<summary>证明</summary>
-<div>
-
-<p>假设 ax + by 的最小正整数值为 s<br>$ 0 &lt;&#x3D;a \bmod s &lt; s $</p>
-<p>$ a \bmod s&#x3D;a-(a&#x2F;s)s&#x3D;a-(a&#x2F;s)(ax+by)&#x3D;(1-(a&#x2F;s)x)a+(-y(a&#x2F;s))b $</p>
-<p>可知 a mod s 也是 ax + by 的一个可能值<br>而如果 a mod s &gt; 0，那么 a mod s &gt;&#x3D; s （由 s 的定义可知）<br>又 a mod s &lt; s （由取模运算本身的性质可知）<br>所以矛盾，$ a \bmod s &#x3D;0 $<br>s 一定是 a 的因数，同理得到 s 也是 b 的因数，s 是 a 和 b 的公因数，s &lt;&#x3D; d</p>
-<p>而 $ d \mid a,d \mid b $</p>
-<p>则 $ d \mid (ax+by),d \mid s ,d&lt;&#x3D;s $</p>
-<p>得到 d &#x3D; s</p>
-</div>
-</details>
-
-<p>这样看来，我们不仅证明了 d 能写成 ax + by 的形式，同时也证明了它是满足这个条件的最小的正整数</p>
-<p>这个定理又叫裴蜀定理（提出它的那个数学家就叫裴蜀，<del>这名字真的怪</del>）</p>
-<hr>
-<p>现在我们将上式进行变形：（以下的 “&#x2F;“ 均表示整除（向下取整））<br>已知 $ d&#x3D;gcd(a,b)&#x3D;gcd(b \bmod a,a) $</p>
-<p>$ d&#x3D;ax_1+by_1 $</p>
-<p>$ d&#x3D;(b \bmod a)x_2+ay_2&#x3D;(b-(b&#x2F;a)a)x_2+ay_2&#x3D;a(y_2-(b&#x2F;a)x_2)+bx_2 $</p>
-<p>可知 $ y_1&#x3D;x_2 $</p>
-<p>$ x_1&#x3D;y_2-(b&#x2F;a)x_2 $</p>
-<p>发现没有？只要知道了递归中下一层的解，就可以轻松求出这一层的解<br>将求 gcd 的函数改改就行了</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">res</span>&#123;</span><br><span class="line">	<span class="type">int</span> d,x,y;<span class="comment">//作为一个三元组返回结果</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function">res <span class="title">work</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a=<span class="number">0</span>)&#123;	<span class="comment">//a=0时，0*x+b*y=gcd(0,b)=b</span></span><br><span class="line">		res r;</span><br><span class="line">		r.d=b;r.x=<span class="number">0</span>;r.y=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">return</span> r;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(a&gt;b)	<span class="keyword">return</span> <span class="built_in">work</span>(b,a);</span><br><span class="line">	res r1,r2;</span><br><span class="line">	r2=<span class="built_in">work</span>(b%a,a);</span><br><span class="line">	r<span class="number">1.</span>d=r<span class="number">2.</span>d;r<span class="number">1.</span>y=r<span class="number">2.</span>x;r<span class="number">1.</span>x=r<span class="number">2.</span>y-b/a*r<span class="number">2.</span>x;</span><br><span class="line">	<span class="keyword">return</span> r1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h4><p>对方程 $ 99x \equiv 9 \pmod{36} $ 的递归求解过程如下：<br>将原方程转换为：<br>$ 99x+36y&#x3D;9 $<br>然后递归：</p>
-<table>
-<thead>
-<tr>
-<th>a</th>
-<th>b</th>
-<th>d</th>
-<th>x</th>
-<th>y</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>99</td>
-<td>36</td>
-<td>9</td>
-<td>-1</td>
-<td>3</td>
-</tr>
-<tr>
-<td>36</td>
-<td>99</td>
-<td>9</td>
-<td>3</td>
-<td>-1</td>
-</tr>
-<tr>
-<td>27</td>
-<td>36</td>
-<td>9</td>
-<td>-1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>9</td>
-<td>27</td>
-<td>9</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>9</td>
-<td>-</td>
-<td>0</td>
-<td>1</td>
-</tr>
-</tbody></table>
-<p>结果为：x &#x3D; -1 , y &#x3D; 3 （即存在 x &#x3D; -1 满足这个方程）</p>
-<hr>
-<p>对 $ ax+by&#x3D;d $ 这个方程两边同时乘上一个整数 k</p>
-<p>很显然，$ axk+byk&#x3D;dk $ 表示<br>另一个方程 $ ax’+by’&#x3D;dk $ 也有整数解，而且 x’ &#x3D; xk , y’ &#x3D; yk</p>
-<p>事实上，对于任意整数 m，” $ ax+by&#x3D;m $ 有整数解 “的充要条件便是 m 是 d 的倍数</p>
-<details>
-<summary>证明</summary>
-<div>
-充分性已经证过了，接下来证必要性：
-已知 ax + by = m 有整数解
-设 $ a=k_1d,b=k_2d $
-
-<p>$ m&#x3D;k_1dx+k_2dy&#x3D;(k_1x+k_2y)d $<br>可知 m 是 d 的倍数</p>
-</div>
-</details>
-
-<hr>
-<p>现在我们的目标就变成了：</p>
-<h4 id="已知-a-b-m-是整数，求不定方程-ax-by-m-的整数解"><a href="#已知-a-b-m-是整数，求不定方程-ax-by-m-的整数解" class="headerlink" title="已知 a , b , m 是整数，求不定方程 $ ax+by&#x3D;m $ 的整数解"></a>已知 a , b , m 是整数，求不定方程 $ ax+by&#x3D;m $ 的整数解</h4><p>首先，我们已经知道，如果 m 不是 gcd( a , b )的倍数，那么此方程无整数解，去掉这种情况</p>
-<p>它既然是个不定方程，这<strong>不定</strong>二字就说明了它可不止有一个解<br>按照上面的那些步骤，我们已经可以求解出它的一个可行解了<br>那么其余那些解呢？这些解之间又有什么联系呢？</p>
-<p>发现： $ a(x+b&#x2F;d)+b(y-a&#x2F;d)&#x3D;ax+by&#x3D;m $</p>
-<p>像这样以此类推，方程的解可以是：$ x’&#x3D;x+(b&#x2F;d)k,y’&#x3D;y-(a&#x2F;d)k $ ，其中 k 为任意整数<br>所以我们只需求出其中一组解，就可以推出其余的全部了</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">work2</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> m)</span></span>&#123;</span><br><span class="line">	res r=<span class="built_in">work</span>(a,b);</span><br><span class="line">	<span class="keyword">if</span>(m%r.d!=<span class="number">0</span>)	<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;N;k++)&#123;</span><br><span class="line">		x[k]=r.x+(b/r.d)*k;</span><br><span class="line">		y[k]=r.y-(a/r.d)*k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="孙子定理"><a href="#孙子定理" class="headerlink" title="孙子定理"></a>孙子定理</h3><p>又名中国剩余定理 <del>，但我更喜欢叫它孙子</del></p>
-<p>先丢一个情景：<br>夏天，阳光正好，可不幸的是你是一名正在军训的高中牲，而且还是班上的体育委员<br>教官把数人头的任务扔给了你，然后自己享受阴凉去了<br>你当然不想在烈日下一个一个一个一个数半天，同学们也不想久站军姿<br>为了尽快结束任务，聪明的你如韩信附体，想到可以通过变化阵型（即行列数）来算出总共有多少人</p>
-<p>例如：排成五人一列时多出一个人，排成七人一列时多出两个人……根据这些算总数</p>
-<p>用数学式子表示出来就一目了然了：<br>$<br>\begin{cases}<br>x \equiv a_1 &amp; \pmod {m_1}   \<br>x \equiv a_2 &amp; \pmod {m_2}  \<br>…… \<br>x \equiv a_n &amp; \pmod {m_n}<br>\end{cases}<br>$<br>(m1 , m2 …… mn 互质)</p>
-<p>反正我第一次看到这个式子时完全无从下手……</p>
-<p>先来从最简单的情况看起；<br>$  x \equiv a \pmod{m} $<br>很显然，存在 x &#x3D; a 满足此式</p>
-<p>再添加一个条件呢？<br>$<br>\begin{cases}<br>x \equiv a_1 &amp; \pmod {m_1}   \<br>x \equiv a_2 &amp; \pmod {m_2}<br>\end{cases}<br>$</p>
-<p>先尝试一下，让 x 和这两个模数都产生点关系，使得计算其中一个式子时可以把另一个式子中的元素消去<br>比如 $ x&#x3D;a_1m_2+a_2m_1 $<br>好像有点眉目了！<br>这样可以保证 x 模 m1 时把 a2 消去，又可以在模 m2 时把 a1 消去<br>但是 a1*m2 （mod m1）可不见得等于 a1 (mod m1) 呀</p>
-<p>所以还需要修补一下，给 a1*m2 添加一点东西(设为 k 好了)使得<br>$ a_1m_2k \equiv a_1 \pmod {m_1} $</p>
-<p>很自然地会想到：<br>$ m_2k \equiv 1 \pmod {m_1} $<br>k 不就是 m2 在模 m1 情况下的逆元嘛？！</p>
-<p>对于 a2*m1 也是一样的思考过程<br>所以得出 $ x&#x3D; a_1m_2m_2^{-1} + a_2m_1m_1^{-1} $</p>
-<p>受此启发，再来考虑有 n 个条件的情况：<br>首先要使计算每个条件时不受其他条件的干扰<br>让 $ x&#x3D;a_1m_2m_3……m_n+……+a_nm_1m_2……m_{n-1} $</p>
-<p>这样比如说对于第一个条件 $ x \equiv a_1 \pmod {m_1} $<br>模 m1 时就会把 x 这个多项式除了第一项的其余项都约掉，留下 a1m2m3……mn</p>
-<p>为了简便，设 $ M_1&#x3D;m_2m_3……m_n ,M_2&#x3D;m_1m_3……m_n $ ，以此类推</p>
-<p>再对 x 进行同样的修补：<br>$ x&#x3D; a_1M_1M_1^{-1} + a_2M_2M_2^{-1} ……+ a_nM_nM_n^{-1} $</p>
-<p>记住： $ M_kM_k^{-1} \equiv 1 \pmod {m_k} $<br>大功告成！！！</p>
-<p>举个例子庆祝一下：<br>$<br>\begin{cases}<br>x \equiv 2 &amp; \pmod {3}   \<br>x \equiv 1 &amp; \pmod {5}  \<br>x \equiv 2 &amp; \pmod {7}<br>\end{cases}<br>$</p>
-<p>$ M_1&#x3D; 35 ,M_2&#x3D; 21 ,M_3&#x3D; 15 $</p>
-<p>$ M_1^{-1}&#x3D;2, M_2^{-1}&#x3D;1, M_3^{-1}&#x3D;1 $</p>
-<p>$ x&#x3D;2M_1M_1^{-1} +M_2M_2^{-1} +2M_3M_3^{-1} &#x3D;191 $</p>
-<p>再验证一下，是不是 perfect ?!</p>
-<p>但这只得出了一个可能解啊<br>再细看一下我们已经得到的式子<br>可以发现 $ x + km_1m_2m_3……m_n $ 即为答案 （ k 为任意整数 )<br><del>我懒得证了，反正能用就行</del></p>
-<hr>
-<h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><p>欧拉函数： $ \phi (x)&#x3D; n $<br>其中 n 为在小于x的正整数中和 n 互质的数的个数</p>
-<p>定理内容：无论正整数 a 是多少，都有：<br>$ a^{\phi(n)} \equiv 1 \pmod n  $</p>
-<p>特殊地，当 n 是质数时，可以得到一个特殊结论<br>$ a^{n-1} \equiv 1 \pmod n $<br>也即 <strong>费马小定理</strong><br><del>不是那个空间太小写不下的费马定理，那个是费马大定理</del></p>
-<p>对群论的知识已经有所了解了吧？<br><del>那么请证明欧拉定理</del></p>
-<p><del>不不不，我可不想像那些教材一样直接甩一个莫名其妙的结论和注意力惊人的证明过程</del></p>
-<p>总之，虽然小标题叫“欧拉定理”，但我们现在先暂时忘记它<br>将思路放到群论的深海里<br><del>什么？！你还不知道神马是群论？快去看鄙人写的另一篇博客–》<a href="https://yupannn.github.io/2023/09/10/qunlun/" title="群论">群论</a></del></p>
-<hr>
-<h3 id="未完结"><a href="#未完结" class="headerlink" title="未完结"></a>未完结</h3>
       
     </div>
 
