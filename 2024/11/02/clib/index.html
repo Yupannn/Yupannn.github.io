@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yupannn.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="&lt;stdio.h&gt;标准输入输出 用C语言使用标准输入输出需要包含&lt;stdio.h&gt;用C++时还可以用iostream代替  int scanf(…)  返回正确输入的参数的个数不会死循环的循环输入，用于读取文件 123while(scanf(&quot;%d&quot;,&amp;n)!&#x3D;EOF)&#123; &#x2F;&#x2F;EOF: End Of File ，文件末尾会有的标志，本质">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C和C++常用库函数（防忘）">
+<meta property="og:url" content="https://yupannn.github.io/2024/11/02/clib/index.html">
+<meta property="og:site_name" content="盂盘的blog">
+<meta property="og:description" content="&lt;stdio.h&gt;标准输入输出 用C语言使用标准输入输出需要包含&lt;stdio.h&gt;用C++时还可以用iostream代替  int scanf(…)  返回正确输入的参数的个数不会死循环的循环输入，用于读取文件 123while(scanf(&quot;%d&quot;,&amp;n)!&#x3D;EOF)&#123; &#x2F;&#x2F;EOF: End Of File ，文件末尾会有的标志，本质">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-02T04:23:40.000Z">
+<meta property="article:modified_time" content="2024-11-02T04:45:50.517Z">
+<meta property="article:author" content="Yupannn">
+<meta property="article:tag" content="语法">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://yupannn.github.io/2024/11/02/clib/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yupannn.github.io/2024/11/02/clib/","path":"2024/11/02/clib/","title":"C和C++常用库函数（防忘）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C和C++常用库函数（防忘） | 盂盘的blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">盂盘的blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">&lt;stdio.h&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-number">1.1.</span> <span class="nav-text">标准输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%BC%E5%BC%8F%E5%8D%A0%E4%BD%8D%E7%AC%A6"><span class="nav-number">1.1.1.</span> <span class="nav-text">常用格式占位符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%BF%97"><span class="nav-number">1.1.2.</span> <span class="nav-text">标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="nav-number">1.1.3.</span> <span class="nav-text">常用转义字符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">文件操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iostream"><span class="nav-number">2.</span> <span class="nav-text">iostream</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-number">3.</span> <span class="nav-text">&lt;conio.h&gt;</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yupannn</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2024/11/02/clib/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C和C++常用库函数（防忘） | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C和C++常用库函数（防忘）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-11-02 12:23:40 / 修改时间：12:45:50" itemprop="dateCreated datePublished" datetime="2024-11-02T12:23:40+08:00">2024-11-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id><a href="#" class="headerlink" title="&lt;stdio.h&gt;"></a>&lt;stdio.h&gt;</h1><h2 id="标准输入输出"><a href="#标准输入输出" class="headerlink" title="标准输入输出"></a>标准输入输出</h2><blockquote>
+<p>用C语言使用标准输入输出需要包含&lt;stdio.h&gt;<br>用C++时还可以用iostream代替</p>
+</blockquote>
+<p>int scanf(…)</p>
+<blockquote>
+<p>返回正确输入的参数的个数<br>不会死循环的循环输入，用于读取文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n)!=EOF)&#123; <span class="comment">//EOF: End Of File ，文件末尾会有的标志，本质是-1</span></span><br><span class="line">   ... <span class="comment">//或者把!=EOF换成==1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按Ctr+C或者Ctr+Z+Enter结束输入</p>
+</blockquote>
+<p>int printf(…)</p>
+<blockquote>
+<p>返回打印字符（包括不可见的字符如空格和换行符）的个数，<br>如果有输入错误则返回一个负值</p>
+</blockquote>
+<h3 id="常用格式占位符"><a href="#常用格式占位符" class="headerlink" title="常用格式占位符"></a>常用格式占位符</h3><p>%d 整数<br>%ld 长整型<br>%f 浮点数<br>%lf 双精度double类型浮点数<br>%e 用科学计数法表示的浮点数，指数部分的e小写<br>%E 用科学计数法表示的浮点数，指数部分的E大写 </p>
+<blockquote>
+<p>默认情况（没有指定输出宽度时）下小数点后输出6位，指数占4位<br>例：printf(“%e”,123.456);<br>输出”1.234560e+02”</p>
+</blockquote>
+<p>%c 字符<br>%o 八进制整数<br>%x 十六进制整数<br>%u 无符号十进制整数<br>%p 指针<br>%s 字符串</p>
+<blockquote>
+<p>使用字符指针给定字符串的初始位置</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> q[n];</span><br><span class="line"><span class="type">char</span>* p=q;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,p);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,q);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,&amp;q[<span class="number">0</span>]);</span><br><span class="line"><span class="comment">//这三个printf 等价</span></span><br></pre></td></tr></table></figure>
+<p>使用scanf时从初始位置一直读取，读到空字符null（’\0’）或者空白字符时结束<br>（读取后不存入数据且仍留在缓冲区里）</p>
+<blockquote>
+<p>空字符(Null character)是ASCII码为0的字符，缩写为NUL，通常作为结束符出现，也可以写作\0<br>输入字符串时scanf自动在末尾加上\0<br>另：NUL和NULL不是一个意思，虽然它们值都等于0，但前者表示’\0’这个字符常量，后者表示一个值为0的空指针，且定义NULL的头文件是另一个，而NUL没有被定义，所以不能直接用</p>
+</blockquote>
+<p>因此它不适用于包含空格或换行符制表符的字符串输入</p>
+</blockquote>
+<h3 id="标志"><a href="#标志" class="headerlink" title="标志"></a>标志</h3><p><strong>右对齐</strong>  在%后加数字最小宽度</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,<span class="number">2</span>);<span class="comment">//输出&quot;_2&quot;，用空格补齐</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%02d&quot;</span>,<span class="number">2</span>);<span class="comment">//输出&quot;02&quot;，用0补齐</span></span><br></pre></td></tr></table></figure>
+<p>如果要打印的位数小于最小宽度，则在前面补足；如果大于最小宽度，则打印所有的数字，不会截断<br><strong>左对齐</strong> 类似于右对齐，只是在%后还要加-</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%-2d&quot;</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">//输出为 &quot;2_&quot; （2后面加了1个空格，好像不能用0补齐？）</span></span><br></pre></td></tr></table></figure>
+
+<p>对于浮点数，上述两种表示方法都会让它在最后一位后面补零，使总长度（包括小数点）不小于最小宽度<br>但补零一般都用”.”来控制小数部分位数<br>例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%8lf&quot;</span>,<span class="number">0.345</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%-8lf&quot;</span>,<span class="number">0.345</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%.8lf&quot;</span>,<span class="number">0.345</span>);</span><br><span class="line"><span class="comment">//前两行都输出 &quot;0.345000&quot;</span></span><br><span class="line"><span class="comment">//第三行输出 &quot;0.34500000&quot;</span></span><br></pre></td></tr></table></figure>
+<p>对于字符串，”.”的用法和整数的”-“相似<br>还多了一个”*”的用法<br>例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%*s&quot;</span>,<span class="number">4</span>,<span class="string">&quot;abc&quot;</span>); <span class="comment">//至少输出4个字符，如果少于则在左边补空格，这里输出&quot;_abc&quot;（_表示空格）</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%.*s&quot;</span>,<span class="number">2</span>,<span class="string">&quot;abc&quot;</span>); <span class="comment">//最多输出2个字符，超出的部分会截断，这里输出&quot;ab&quot;</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%*.*s&quot;</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="string">&quot;abc&quot;</span>); <span class="comment">//第一个*表示总共至少输出5个字符，第二个*表示总共最多输出所给字符串的2个字符</span></span><br><span class="line"><span class="comment">//混合的结果就是输出&quot;___ab&quot;，在ab前面补了三个空格</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="常用转义字符"><a href="#常用转义字符" class="headerlink" title="常用转义字符"></a>常用转义字符</h3><p>%% “%”<br>\n 换行<br>\r 回车，将当前位置移到本行开头<br>\t 水平制表符（&#x3D;tab键）<br>\ “&quot;<br>&#39; “‘“<br>&quot; “””<br>\0 空字符NUL<br>\a 响铃 </p>
+<hr>
+<p>char* gets()</p>
+<blockquote>
+<p>读取一行字符串，只会在遇到\n时才停止，<br>因为它不检查输入字符的个数，容易造成溢出等问题，所以早就被ban了</p>
+</blockquote>
+<p>int puts(char* s)</p>
+<blockquote>
+<p>虽然gets不能用了，但puts还活得好好的<br>只能输出一行，并且会在字符串后自动添加换行符<br>返回值为字符串长度（包括末尾的\0），如果发生错误则返回EOF</p>
+</blockquote>
+<p>int getchar(void)</p>
+<blockquote>
+<p>只读取缓存区的一个字符，返回值为该字符的ASCII码值，读取失败时返回EOF<br>接受空格符和换行符，所以有时可能误读了前面残留的\n，这时就得提前清空缓存区</p>
+</blockquote>
+<p>int putchar(char c)</p>
+<blockquote>
+<p>返回值为该字符的ASCII码值</p>
+</blockquote>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><blockquote>
+<p>FILE 是一种数据类型，是预定义的一个struct，用于管理文件流<br>常见的有stdin,stdout,stderr等<br>FILE* 是指向FILE类型数据的指针</p>
+</blockquote>
+<p>FILE* freopen(const char* path,const char* mode,FILE* stream)</p>
+<blockquote>
+<p>把原先的标准流文件（stdin（默认为键盘）,stdout（默认为屏幕）,stderr（默认为屏幕））<br>重定向到由path指定的文件中<br>返回值为path所指定文件的指针，若重定向失败则返回NULL（空指针，0）</p>
+</blockquote>
+<p><strong>mode模式：</strong><br>“r” read，只读，文件必须存在<br>“w” write，创建一个只能写入的空文件，若文件名已存在，则删除原有文件的内容<br>“a” append，追加，若文件不存在则创建文件<br>“r+”    打开一个已存在的文件，可读也可写<br>“w+”    创建一个用于读写的空文件<br>“a+”    读取+追加</p>
+<p>int fclose(FILE* stream);</p>
+<blockquote>
+<p>关闭stream流，如果成功则返回0，如果失败则返回EOF（-1）</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;file1.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line"><span class="comment">//将输入重定向到file1这个文件，从file1中读取数据</span></span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;file2.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"><span class="comment">//将输出重定向到file2这个文件中，将数据输出到file2中</span></span><br><span class="line"><span class="built_in">fclose</span>(stdin);<span class="comment">//关闭重定向输入</span></span><br><span class="line"><span class="built_in">fclose</span>(stdout);<span class="comment">//关闭重定向输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//或者这样写</span></span><br><span class="line">FILE* f1,f2;</span><br><span class="line">f1=<span class="built_in">freopen</span>(<span class="string">&quot;file1.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">f2=<span class="built_in">freopen</span>(<span class="string">&quot;file2.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"><span class="built_in">fclose</span>(f1);</span><br><span class="line"><span class="built_in">fclose</span>(f2);</span><br></pre></td></tr></table></figure>
+
+<h1 id="iostream"><a href="#iostream" class="headerlink" title="iostream"></a>iostream</h1><blockquote>
+<p>不知道为什么在iostream两边加上&lt;&gt;，网站上它就显示不出来了……</p>
+</blockquote>
+<blockquote>
+<p>是C++的标准库而不是C的<br>要加 using namespace std;</p>
+</blockquote>
+<p>cin&gt;&gt;</p>
+<blockquote>
+<p>读到空白字符就停止输入，且既不读入也不在缓冲区清除该空白字符<br>特殊地，如果还没读入数据就遇到空白字符，则忽略并清除它们，然后继续读取</p>
+</blockquote>
+<p>cin.getline(char* s,int n,char c)</p>
+<blockquote>
+<p>只读一行，读取到换行符后就结束<br>（不将换行符读入数据，但会在缓冲区中清除掉这个换行符）<br>s表示接收字符串的变量<br>n表示字符个数（超出时会截断）<br>c可写可不写，表示（在一行内）遇到c就结束输入，省略情况下默认为’\0’</p>
+</blockquote>
+<p>getline(cin,string s)</p>
+<blockquote>
+<p>搭配另一个头文件&lt;string.h&gt;使用<br>和上面那个读取方式类似<br>可以用它读取带空格的一整行</p>
+</blockquote>
+<h1 id="-1"><a href="#-1" class="headerlink" title="&lt;conio.h&gt;"></a>&lt;conio.h&gt;</h1><p>int getch(void)</p>
+<blockquote>
+<p>和getchar类似，只读单个字符，并返回该字符的ASCII码值<br>但不使用缓冲区，直接从键盘获取，不用按回车，即输即取<br>不会回显</p>
+</blockquote>
+<p>int getche(void)</p>
+<blockquote>
+<p>和getch的唯一区别是getche会回显<br>我猜最后那个e是echo的缩写？</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%AD%E6%B3%95/" rel="tag"># 语法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/10/16/tulun/" rel="prev" title="图论概述">
+                  <i class="fa fa-angle-left"></i> 图论概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yupannn</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

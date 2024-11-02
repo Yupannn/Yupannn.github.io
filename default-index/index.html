@@ -119,12 +119,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -141,6 +141,171 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2024/11/02/clib/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yupannn">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 盂盘的blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/02/clib/" class="post-title-link" itemprop="url">C和C++常用库函数（防忘）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-11-02 12:23:40 / 修改时间：12:45:50" itemprop="dateCreated datePublished" datetime="2024-11-02T12:23:40+08:00">2024-11-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id><a href="#" class="headerlink" title="&lt;stdio.h&gt;"></a>&lt;stdio.h&gt;</h1><h2 id="标准输入输出"><a href="#标准输入输出" class="headerlink" title="标准输入输出"></a>标准输入输出</h2><blockquote>
+<p>用C语言使用标准输入输出需要包含&lt;stdio.h&gt;<br>用C++时还可以用iostream代替</p>
+</blockquote>
+<p>int scanf(…)</p>
+<blockquote>
+<p>返回正确输入的参数的个数<br>不会死循环的循环输入，用于读取文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n)!=EOF)&#123; <span class="comment">//EOF: End Of File ，文件末尾会有的标志，本质是-1</span></span><br><span class="line">   ... <span class="comment">//或者把!=EOF换成==1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按Ctr+C或者Ctr+Z+Enter结束输入</p>
+</blockquote>
+<p>int printf(…)</p>
+<blockquote>
+<p>返回打印字符（包括不可见的字符如空格和换行符）的个数，<br>如果有输入错误则返回一个负值</p>
+</blockquote>
+<h3 id="常用格式占位符"><a href="#常用格式占位符" class="headerlink" title="常用格式占位符"></a>常用格式占位符</h3><p>%d 整数<br>%ld 长整型<br>%f 浮点数<br>%lf 双精度double类型浮点数<br>%e 用科学计数法表示的浮点数，指数部分的e小写<br>%E 用科学计数法表示的浮点数，指数部分的E大写 </p>
+<blockquote>
+<p>默认情况（没有指定输出宽度时）下小数点后输出6位，指数占4位<br>例：printf(“%e”,123.456);<br>输出”1.234560e+02”</p>
+</blockquote>
+<p>%c 字符<br>%o 八进制整数<br>%x 十六进制整数<br>%u 无符号十进制整数<br>%p 指针<br>%s 字符串</p>
+<blockquote>
+<p>使用字符指针给定字符串的初始位置</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> q[n];</span><br><span class="line"><span class="type">char</span>* p=q;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,p);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,q);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,&amp;q[<span class="number">0</span>]);</span><br><span class="line"><span class="comment">//这三个printf 等价</span></span><br></pre></td></tr></table></figure>
+<p>使用scanf时从初始位置一直读取，读到空字符null（’\0’）或者空白字符时结束<br>（读取后不存入数据且仍留在缓冲区里）</p>
+<blockquote>
+<p>空字符(Null character)是ASCII码为0的字符，缩写为NUL，通常作为结束符出现，也可以写作\0<br>输入字符串时scanf自动在末尾加上\0<br>另：NUL和NULL不是一个意思，虽然它们值都等于0，但前者表示’\0’这个字符常量，后者表示一个值为0的空指针，且定义NULL的头文件是另一个，而NUL没有被定义，所以不能直接用</p>
+</blockquote>
+<p>因此它不适用于包含空格或换行符制表符的字符串输入</p>
+</blockquote>
+<h3 id="标志"><a href="#标志" class="headerlink" title="标志"></a>标志</h3><p><strong>右对齐</strong>  在%后加数字最小宽度</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,<span class="number">2</span>);<span class="comment">//输出&quot;_2&quot;，用空格补齐</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%02d&quot;</span>,<span class="number">2</span>);<span class="comment">//输出&quot;02&quot;，用0补齐</span></span><br></pre></td></tr></table></figure>
+<p>如果要打印的位数小于最小宽度，则在前面补足；如果大于最小宽度，则打印所有的数字，不会截断<br><strong>左对齐</strong> 类似于右对齐，只是在%后还要加-</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%-2d&quot;</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">//输出为 &quot;2_&quot; （2后面加了1个空格，好像不能用0补齐？）</span></span><br></pre></td></tr></table></figure>
+
+<p>对于浮点数，上述两种表示方法都会让它在最后一位后面补零，使总长度（包括小数点）不小于最小宽度<br>但补零一般都用”.”来控制小数部分位数<br>例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%8lf&quot;</span>,<span class="number">0.345</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%-8lf&quot;</span>,<span class="number">0.345</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%.8lf&quot;</span>,<span class="number">0.345</span>);</span><br><span class="line"><span class="comment">//前两行都输出 &quot;0.345000&quot;</span></span><br><span class="line"><span class="comment">//第三行输出 &quot;0.34500000&quot;</span></span><br></pre></td></tr></table></figure>
+<p>对于字符串，”.”的用法和整数的”-“相似<br>还多了一个”*”的用法<br>例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%*s&quot;</span>,<span class="number">4</span>,<span class="string">&quot;abc&quot;</span>); <span class="comment">//至少输出4个字符，如果少于则在左边补空格，这里输出&quot;_abc&quot;（_表示空格）</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%.*s&quot;</span>,<span class="number">2</span>,<span class="string">&quot;abc&quot;</span>); <span class="comment">//最多输出2个字符，超出的部分会截断，这里输出&quot;ab&quot;</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%*.*s&quot;</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="string">&quot;abc&quot;</span>); <span class="comment">//第一个*表示总共至少输出5个字符，第二个*表示总共最多输出所给字符串的2个字符</span></span><br><span class="line"><span class="comment">//混合的结果就是输出&quot;___ab&quot;，在ab前面补了三个空格</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="常用转义字符"><a href="#常用转义字符" class="headerlink" title="常用转义字符"></a>常用转义字符</h3><p>%% “%”<br>\n 换行<br>\r 回车，将当前位置移到本行开头<br>\t 水平制表符（&#x3D;tab键）<br>\ “&quot;<br>&#39; “‘“<br>&quot; “””<br>\0 空字符NUL<br>\a 响铃 </p>
+<hr>
+<p>char* gets()</p>
+<blockquote>
+<p>读取一行字符串，只会在遇到\n时才停止，<br>因为它不检查输入字符的个数，容易造成溢出等问题，所以早就被ban了</p>
+</blockquote>
+<p>int puts(char* s)</p>
+<blockquote>
+<p>虽然gets不能用了，但puts还活得好好的<br>只能输出一行，并且会在字符串后自动添加换行符<br>返回值为字符串长度（包括末尾的\0），如果发生错误则返回EOF</p>
+</blockquote>
+<p>int getchar(void)</p>
+<blockquote>
+<p>只读取缓存区的一个字符，返回值为该字符的ASCII码值，读取失败时返回EOF<br>接受空格符和换行符，所以有时可能误读了前面残留的\n，这时就得提前清空缓存区</p>
+</blockquote>
+<p>int putchar(char c)</p>
+<blockquote>
+<p>返回值为该字符的ASCII码值</p>
+</blockquote>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><blockquote>
+<p>FILE 是一种数据类型，是预定义的一个struct，用于管理文件流<br>常见的有stdin,stdout,stderr等<br>FILE* 是指向FILE类型数据的指针</p>
+</blockquote>
+<p>FILE* freopen(const char* path,const char* mode,FILE* stream)</p>
+<blockquote>
+<p>把原先的标准流文件（stdin（默认为键盘）,stdout（默认为屏幕）,stderr（默认为屏幕））<br>重定向到由path指定的文件中<br>返回值为path所指定文件的指针，若重定向失败则返回NULL（空指针，0）</p>
+</blockquote>
+<p><strong>mode模式：</strong><br>“r” read，只读，文件必须存在<br>“w” write，创建一个只能写入的空文件，若文件名已存在，则删除原有文件的内容<br>“a” append，追加，若文件不存在则创建文件<br>“r+”    打开一个已存在的文件，可读也可写<br>“w+”    创建一个用于读写的空文件<br>“a+”    读取+追加</p>
+<p>int fclose(FILE* stream);</p>
+<blockquote>
+<p>关闭stream流，如果成功则返回0，如果失败则返回EOF（-1）</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;file1.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line"><span class="comment">//将输入重定向到file1这个文件，从file1中读取数据</span></span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;file2.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"><span class="comment">//将输出重定向到file2这个文件中，将数据输出到file2中</span></span><br><span class="line"><span class="built_in">fclose</span>(stdin);<span class="comment">//关闭重定向输入</span></span><br><span class="line"><span class="built_in">fclose</span>(stdout);<span class="comment">//关闭重定向输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//或者这样写</span></span><br><span class="line">FILE* f1,f2;</span><br><span class="line">f1=<span class="built_in">freopen</span>(<span class="string">&quot;file1.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">f2=<span class="built_in">freopen</span>(<span class="string">&quot;file2.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"><span class="built_in">fclose</span>(f1);</span><br><span class="line"><span class="built_in">fclose</span>(f2);</span><br></pre></td></tr></table></figure>
+
+<h1 id="iostream"><a href="#iostream" class="headerlink" title="iostream"></a>iostream</h1><blockquote>
+<p>不知道为什么在iostream两边加上&lt;&gt;，网站上它就显示不出来了……</p>
+</blockquote>
+<blockquote>
+<p>是C++的标准库而不是C的<br>要加 using namespace std;</p>
+</blockquote>
+<p>cin&gt;&gt;</p>
+<blockquote>
+<p>读到空白字符就停止输入，且既不读入也不在缓冲区清除该空白字符<br>特殊地，如果还没读入数据就遇到空白字符，则忽略并清除它们，然后继续读取</p>
+</blockquote>
+<p>cin.getline(char* s,int n,char c)</p>
+<blockquote>
+<p>只读一行，读取到换行符后就结束<br>（不将换行符读入数据，但会在缓冲区中清除掉这个换行符）<br>s表示接收字符串的变量<br>n表示字符个数（超出时会截断）<br>c可写可不写，表示（在一行内）遇到c就结束输入，省略情况下默认为’\0’</p>
+</blockquote>
+<p>getline(cin,string s)</p>
+<blockquote>
+<p>搭配另一个头文件&lt;string.h&gt;使用<br>和上面那个读取方式类似<br>可以用它读取带空格的一整行</p>
+</blockquote>
+<h1 id="-1"><a href="#-1" class="headerlink" title="&lt;conio.h&gt;"></a>&lt;conio.h&gt;</h1><p>int getch(void)</p>
+<blockquote>
+<p>和getchar类似，只读单个字符，并返回该字符的ASCII码值<br>但不使用缓冲区，直接从键盘获取，不用按回车，即输即取<br>不会回显</p>
+</blockquote>
+<p>int getche(void)</p>
+<blockquote>
+<p>和getch的唯一区别是getche会回显<br>我猜最后那个e是echo的缩写？</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1186,100 +1351,6 @@
 <p>排完序后再从左往右DP</p>
 <p>DP的状态数为N*len，转移的时间复杂度为O(len)</p>
 <p>复杂度O(N<em>len</em>len)</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yupannn.github.io/2023/07/11/wangluoliu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yupannn">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="盂盘的blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 盂盘的blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/11/wangluoliu/" class="post-title-link" itemprop="url">网络流算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-07-11 17:11:34" itemprop="dateCreated datePublished" datetime="2023-07-11T17:11:34+08:00">2023-07-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-06 17:13:28" itemprop="dateModified" datetime="2024-10-06T17:13:28+08:00">2024-10-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h2><p>暑假培训Day3笔记</p>
-<p>大概有三种选择</p>
-<h3 id="Ford-Fulkerson-算法-（朴素增广路算法）"><a href="#Ford-Fulkerson-算法-（朴素增广路算法）" class="headerlink" title="Ford-Fulkerson 算法 （朴素增广路算法）"></a>Ford-Fulkerson 算法 （朴素增广路算法）</h3><p>给每条边添加一个反向边用于“反悔”，反向边流量初始为0</p>
-<p>每次从起点到重点DFS找一条有流量的道路，然后增广这条路</p>
-<p>复杂度与流量有关</p>
-<h3 id="EK-算法（BFS找增广路）"><a href="#EK-算法（BFS找增广路）" class="headerlink" title="EK 算法（BFS找增广路）"></a>EK 算法（BFS找增广路）</h3><p>每次找一条最短路径增广<br>复杂度 $ O(VE^2) $</p>
-<h3 id="Dinic算法"><a href="#Dinic算法" class="headerlink" title="Dinic算法"></a>Dinic算法</h3><p>更常用，也更快</p>
-<p>BFS先分层，然后DFS进行多路增广最短路径</p>
-<p>（当前弧优化，一条边增广一次后就不会再次增广了，所以下次增广时不需要再考虑这条边，直接继续下一条了）</p>
-<p>然后BFS和DFS轮流迭代</p>
-<p>在二分图中 $ O(VE^{0.5}) $ </p>
-<p>一般图中$ O(V^{2E}) $,通常跑的非常快</p>
-<p>老师给的板子</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> Dinic&#123;</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> N 100005</span></span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> M 300005</span></span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line">		<span class="type">int</span> flow,t,next;</span><br><span class="line">	&#125;e[M];<span class="type">int</span> ecnt,head[N];</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">addedge</span><span class="params">(<span class="type">int</span> f,<span class="type">int</span> t,<span class="type">int</span> fl)</span></span>&#123;</span><br><span class="line">		e[++ecnt]=(edge)&#123;fl,t,head[f]&#125;;head[f]=ecnt;</span><br><span class="line">		e[++ecnt]=(edge)&#123;<span class="number">0</span>,f,head[t]&#125;;head[t]=ecnt;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//----------------</span></span><br><span class="line">	<span class="type">int</span> S,T;</span><br><span class="line">	<span class="type">int</span> dis[N],cur[N];</span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">BFS</span><span class="params">()</span></span>&#123; <span class="comment">// 按距离分层 </span></span><br><span class="line">		<span class="built_in">memset</span>(dis,<span class="number">0x3f</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">		dis[S]=<span class="number">0</span>;queue&lt;<span class="type">int</span>&gt; que;que.<span class="built_in">push</span>(S);</span><br><span class="line">		<span class="keyword">while</span>(!que.<span class="built_in">empty</span>())&#123;</span><br><span class="line">			<span class="type">int</span> u=que.<span class="built_in">front</span>();que.<span class="built_in">pop</span>();</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> i=head[u];i;i=e[i].next)&#123; <span class="comment">// 遍历出边 </span></span><br><span class="line">				<span class="keyword">if</span>(e[i].flow!=<span class="number">0</span>&amp;&amp;dis[e[i].t]==<span class="number">0x3f3f3f3f</span>)&#123; <span class="comment">// 如果这条路还有流量，并且没访问过另一个点 </span></span><br><span class="line">					dis[e[i].t]=dis[u]<span class="number">+1</span>,que.<span class="built_in">push</span>(e[i].t);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dis[T]!=INF; <span class="comment">// 看看终点T能不能到 </span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">DFS</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> a)</span></span>&#123; <span class="comment">// Dinic 多路增广， u是当前点，a是有多少流量可于到达这个点 </span></span><br><span class="line">		<span class="keyword">if</span>(u==T||a==<span class="number">0</span>) <span class="keyword">return</span> a; <span class="comment">// 到了 or 没流量了 </span></span><br><span class="line">		<span class="type">int</span> ret=<span class="number">0</span>; <span class="comment">// 返回从当前点能增广到 T 的总流量 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> &amp;i=cur[u];i;i=e[i].next)&#123; <span class="comment">// 遍历边表, 当前弧 &amp;i = cur[u] </span></span><br><span class="line">			<span class="keyword">if</span>(e[i].flow==<span class="number">0</span>||dis[e[i].t]!=dis[u]<span class="number">+1</span>) <span class="keyword">continue</span>; <span class="comment">// 边上没流量 or 不是最短路 </span></span><br><span class="line">			<span class="type">int</span> f=<span class="built_in">DFS</span>(e[i].t,a&lt;e[i].flow? a:e[i].flow); <span class="comment">// DFS(e[i].t, min(a,e[i].flow));</span></span><br><span class="line">			<span class="keyword">if</span>(f)&#123; <span class="comment">// 如果我们找到了增广路，并且流了f的流量 </span></span><br><span class="line">				e[i].flow-=f;e[i^<span class="number">1</span>].flow+=f; <span class="comment">// 调整剩余容量和反向边 </span></span><br><span class="line">				ret+=f;a-=f; <span class="comment">// 返回值多了f，还能增广的总流量a少了f </span></span><br><span class="line">				<span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> ret; <span class="comment">// 流量预算a，用完了 </span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">work</span><span class="params">(<span class="type">int</span> S1,<span class="type">int</span> T1)</span></span>&#123;</span><br><span class="line">		S=S1,T=T1; <span class="comment">// S是源点 T是汇点 </span></span><br><span class="line">		<span class="type">int</span> ret=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(<span class="built_in">BFS</span>())&#123; <span class="comment">// BFS 构建按照距离分层的图 </span></span><br><span class="line">			<span class="built_in">memcpy</span>(cur,head,<span class="built_in">sizeof</span>(cur)); <span class="comment">// 重置当前弧 </span></span><br><span class="line">			ret+=<span class="built_in">DFS</span>(S1,INF); <span class="comment">// 试图增广 </span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">initialize</span><span class="params">()</span></span>&#123; <span class="comment">// 初始化 </span></span><br><span class="line">		ecnt=<span class="number">1</span>;<span class="built_in">memset</span>(head,<span class="number">0</span>,<span class="built_in">sizeof</span>(head));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">#<span class="keyword">undef</span> N</span></span><br><span class="line">	<span class="meta">#<span class="keyword">undef</span> M</span></span><br><span class="line">	<span class="meta">#<span class="keyword">undef</span> INF</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3376">模板题</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 220</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 10010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line">	LL flow;<span class="type">int</span> t,next;</span><br><span class="line">&#125;e[M];</span><br><span class="line"><span class="type">int</span> ecnt,head[N],cur[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">addedge</span><span class="params">(<span class="type">int</span> f,<span class="type">int</span> t,LL fl)</span></span>&#123;</span><br><span class="line">	e[++ecnt]=(edge)&#123;fl,t,head[f]&#125;;head[f]=ecnt;</span><br><span class="line">	e[++ecnt]=(edge)&#123;<span class="number">0</span>,f,head[t]&#125;;head[t]=ecnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> S,T;</span><br><span class="line">LL dis[N];</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">BFS</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">-1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">	dis[S]=<span class="number">0</span>;queue&lt;<span class="type">int</span>&gt; que;que.<span class="built_in">push</span>(S);</span><br><span class="line">	<span class="keyword">while</span>(!que.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=que.<span class="built_in">front</span>();que.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];i;i=e[i].next)&#123;</span><br><span class="line">			<span class="keyword">if</span>(e[i].flow!=<span class="number">0</span>&amp;&amp;dis[e[i].t]==<span class="number">-1</span>)&#123; </span><br><span class="line">				dis[e[i].t]=dis[u]<span class="number">+1</span>,que.<span class="built_in">push</span>(e[i].t);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dis[T]!=<span class="number">-1</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">DFS</span><span class="params">(<span class="type">int</span> u,LL a)</span></span>&#123; </span><br><span class="line">	<span class="keyword">if</span>(u==T||a==<span class="number">0</span>) <span class="keyword">return</span> a; </span><br><span class="line">	LL ret=<span class="number">0</span>; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> &amp;i=cur[u];i;i=e[i].next)&#123; </span><br><span class="line">		<span class="keyword">if</span>(e[i].flow==<span class="number">0</span>||dis[e[i].t]!=dis[u]<span class="number">+1</span>) <span class="keyword">continue</span>; </span><br><span class="line">		<span class="type">int</span> f=<span class="built_in">DFS</span>(e[i].t,a&lt;e[i].flow? a:e[i].flow); </span><br><span class="line">		<span class="keyword">if</span>(f)&#123; </span><br><span class="line">			e[i].flow-=f;e[i^<span class="number">1</span>].flow+=f; </span><br><span class="line">			ret+=f;a-=f; </span><br><span class="line">			<span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> ret; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">	LL res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">BFS</span>())&#123;</span><br><span class="line">		<span class="built_in">memcpy</span>(cur,head,<span class="built_in">sizeof</span>(cur));</span><br><span class="line">		 res+=<span class="built_in">DFS</span>(S,INF); </span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> res;	</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ecnt=<span class="number">1</span>;<span class="built_in">memset</span>(head,<span class="number">0</span>,<span class="built_in">sizeof</span>(head));</span><br><span class="line">	<span class="type">int</span> n,m,u,v;LL w;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m&gt;&gt;S&gt;&gt;T;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>,&amp;u,&amp;v,&amp;w);</span><br><span class="line">		<span class="built_in">addedge</span>(u,v,w);</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">work</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 
       
     </div>
