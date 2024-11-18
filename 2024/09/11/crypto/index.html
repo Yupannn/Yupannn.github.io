@@ -27,7 +27,7 @@
 <meta property="og:description" content="现在再看之前写的东西感觉太抓马了orz所以这篇就重写了 先来学点英语 Password 口令也就是平时登录账号时候输入的那个密码 Cipher&#x2F;Cypher 密码  这两个词好像只有美式&#x2F;英式的区别？  Crypto 加密Cryptology 密码学的统称它分为Cryptography （通常所说的密码学，也是本文主要要写的东西）和 Cryptanalysis （密码分析学）前">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-09-11T07:54:40.000Z">
-<meta property="article:modified_time" content="2024-11-10T03:56:21.741Z">
+<meta property="article:modified_time" content="2024-11-18T04:26:48.072Z">
 <meta property="article:author" content="Yupannn">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -112,7 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">密码的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Symmetric-Ciphers-%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">Symmetric Ciphers  对称加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Substitution-Ciphers-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">Substitution Ciphers 替换加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">分组密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81"><span class="nav-number">1.1.3.</span> <span class="nav-text">序列密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.4.</span> <span class="nav-text">哈希函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asymmetric-Ciphers-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="nav-number">1.2.</span> <span class="nav-text">Asymmetric Ciphers  非对称加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA"><span class="nav-number">1.2.1.</span> <span class="nav-text">RSA</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD"><span class="nav-number">2.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">密码的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Symmetric-Ciphers-%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">Symmetric Ciphers  对称加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Substitution-Ciphers-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">Substitution Ciphers 替换加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">分组密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%AF%86%E7%A0%81"><span class="nav-number">1.1.3.</span> <span class="nav-text">序列密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.4.</span> <span class="nav-text">哈希函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asymmetric-Ciphers-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="nav-number">1.2.</span> <span class="nav-text">Asymmetric Ciphers  非对称加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA"><span class="nav-number">1.2.1.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%9A%84%E5%90%AC%E9%83%BD%E6%B2%A1%E5%90%AC%E8%AF%B4%E8%BF%87%EF%BC%88"><span class="nav-number">1.2.2.</span> <span class="nav-text">其他的听都没听说过（</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">密码学的发展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8F%91%E5%B1%95%E5%88%86%E6%94%AF"><span class="nav-number">2.1.</span> <span class="nav-text">现代密码学发展分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86"><span class="nav-number">2.1.1.</span> <span class="nav-text">公钥加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="nav-number">2.1.2.</span> <span class="nav-text">数字签名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%98%E5%AF%86%E5%85%B1%E4%BA%AB"><span class="nav-number">2.1.3.</span> <span class="nav-text">秘密共享</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E7%BB%8F%E6%84%8F%E4%BC%A0%E8%BE%93"><span class="nav-number">2.1.4.</span> <span class="nav-text">不经意传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%AF%81%E6%98%8E%E5%AE%89%E5%85%A8"><span class="nav-number">2.1.5.</span> <span class="nav-text">可证明安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E8%AE%A1%E7%AE%97"><span class="nav-number">2.1.6.</span> <span class="nav-text">安全计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E"><span class="nav-number">2.1.7.</span> <span class="nav-text">零知识证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ORAM"><span class="nav-number">2.1.8.</span> <span class="nav-text">ORAM</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%99%E5%86%9C%E5%AE%9A%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">香农定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%96%84%E4%BF%9D%E5%AF%86%E6%80%A7"><span class="nav-number">3.1.</span> <span class="nav-text">完善保密性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD"><span class="nav-number">4.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -193,7 +193,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-10 11:56:21" itemprop="dateModified" datetime="2024-11-10T11:56:21+08:00">2024-11-10</time>
+      <time title="修改时间：2024-11-18 12:26:48" itemprop="dateModified" datetime="2024-11-18T12:26:48+08:00">2024-11-18</time>
     </span>
 
   
@@ -229,7 +229,30 @@
 <h4 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h4><p><strong>SHA系列</strong> Secure Hash Algorithm，安全散列算法<br><strong>SM3</strong> 也是我国特有</p>
 <h3 id="Asymmetric-Ciphers-非对称加密"><a href="#Asymmetric-Ciphers-非对称加密" class="headerlink" title="Asymmetric Ciphers  非对称加密"></a>Asymmetric Ciphers  非对称加密</h3><p>和对称加密相对，“非对称”指的就是加密和解密用的是不同的密钥</p>
 <h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><p>典</p>
-<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
+<h4 id="其他的听都没听说过（"><a href="#其他的听都没听说过（" class="headerlink" title="其他的听都没听说过（"></a>其他的听都没听说过（</h4><h2 id="密码学的发展"><a href="#密码学的发展" class="headerlink" title="密码学的发展"></a>密码学的发展</h2><p><strong>时间节点</strong>：</p>
+<ul>
+<li><p>远古时期（？）到1949年被划分为 <strong>古典密码时期</strong>，这个时期的密码还只停留在语言的层面上，常见的有对字符的置换、代换、轮换等等</p>
+</li>
+<li><p>1949后到1976年属于<strong>近代密码时期</strong>，大概是两次世界大战的缘故，密码学发展迅猛，密码破译难度大幅增加</p>
+</li>
+<li><p>以Diffie-Hellman协议为起始点至今，属于<strong>现代密码学时期</strong>，现在的以公钥密码为代表，面向通信以及计算<br><del>（其实我不知道什么是Diffie-Hellman）</del></p>
+</li>
+</ul>
+<p>到了现代，密码学已经和数学分不开了，<br>为了尽可能地使密码难以被破解，一般都会将密码基于某个<strong>数学困难问题</strong><br>而 数学困难问题 就是直到目前世界上仍没有出现一个有效的解决方案的问题</p>
+<p>例如<strong>大整数分解，离散对数，双线性对，格</strong>等等<br>（按我个人的理解就是都是NP类问题？）</p>
+<p>其中，前两个可能会被量子算法攻破，所以都说RSA迟早会die（</p>
+<h3 id="现代密码学发展分支"><a href="#现代密码学发展分支" class="headerlink" title="现代密码学发展分支"></a>现代密码学发展分支</h3><p>（水平有限，直接抄ppt了）</p>
+<h4 id="公钥加密"><a href="#公钥加密" class="headerlink" title="公钥加密"></a>公钥加密</h4><p><strong>动机</strong>：在对称加密应用中，双方需要提前预设好相同的密钥。能不能在双方无协商好的密钥的前提下，完成保密通信？<br><strong>起源</strong>：Whitfield Diffie, Martin E. Hellman, New Directions in Cryptography, IEEE<br>Transactions on Information Theory, Vol. 22, No. 6, 1976.（图灵奖）<br><strong>能力</strong>：用户的公钥公开、私钥秘密保存，加密者采用用户的公钥对数据加密而后传输对应的密文，只有私钥的拥有者能够解密数据</p>
+<h4 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h4><p><strong>动机</strong>：能不能模拟日常生活中的签字？<br><strong>起源</strong>：Rivest R L, Shamir A, Adleman L. A method for obtaining digital signatures and public-key<br>cryptosystems[J]. Communications of the ACM, 1978, 21(2): 120-126.（图灵奖）<br><strong>能力</strong>：用户的公钥公开、私钥秘密保存，用户采用其私钥对数据签名，任意验证者均可采用该用户公钥进行验证，确保是指定用户的签名</p>
+<h4 id="秘密共享"><a href="#秘密共享" class="headerlink" title="秘密共享"></a>秘密共享</h4><h4 id="不经意传输"><a href="#不经意传输" class="headerlink" title="不经意传输"></a>不经意传输</h4><h4 id="可证明安全"><a href="#可证明安全" class="headerlink" title="可证明安全"></a>可证明安全</h4><h4 id="安全计算"><a href="#安全计算" class="headerlink" title="安全计算"></a>安全计算</h4><h4 id="零知识证明"><a href="#零知识证明" class="headerlink" title="零知识证明"></a>零知识证明</h4><h4 id="ORAM"><a href="#ORAM" class="headerlink" title="ORAM"></a>ORAM</h4><h2 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h2><h3 id="完善保密性"><a href="#完善保密性" class="headerlink" title="完善保密性"></a>完善保密性</h3><p>若对于 $ \forall m_0,m_1\in M(\left|m_0\right|&#x3D;\left|m_1\right| ),\forall c \in C  $<br>有 $ Pr(E(k,m_0)&#x3D;c)&#x3D;Pr(E(k,m_1)&#x3D;c) $<br>其中 $ k \in K $ 是随机的<br>则对称加密体制 ( E , D ) 是<strong>完善保密</strong>的</p>
+<p><strong>攻击者获得密文，然而明文是等概率的，进而推测不出明文的信息</strong></p>
+<p>设 ( E , D ) 是定义在 ( k , M , C ) 上的加密方案，如果它是完善保密的，则 $ \left| K \right| \geq \left| M \right| $</p>
+<p>如果一个加密体制具有完善保密性，那么密钥数量至少要和明文数量一样多</p>
+<p>但是问题来了，如果要将一个长度为M的文件发送出去，需要至少M长度的密钥K加密才能满足完善加密性，而要把这个密钥K发送给对方，又需要另外一个长度至少为M的密钥K’，而K’又需要另一个K’’……</p>
+<p>这样递归下去不就子子孙孙无穷尽了吗？<br>因此，在现实中是<strong>不存在</strong>真的完善保密的方案的</p>
+<p><del>上述的都是老师ppt上的东西，详细内容我之后再另写</del></p>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><p>感觉我这篇写完都能直接当大作业交上去了（</p>
+
     </div>
 
     

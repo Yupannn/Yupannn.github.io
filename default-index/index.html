@@ -698,7 +698,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-10 11:56:21" itemprop="dateModified" datetime="2024-11-10T11:56:21+08:00">2024-11-10</time>
+      <time title="修改时间：2024-11-18 12:26:48" itemprop="dateModified" datetime="2024-11-18T12:26:48+08:00">2024-11-18</time>
     </span>
 
   
@@ -735,7 +735,30 @@
 <h4 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h4><p><strong>SHA系列</strong> Secure Hash Algorithm，安全散列算法<br><strong>SM3</strong> 也是我国特有</p>
 <h3 id="Asymmetric-Ciphers-非对称加密"><a href="#Asymmetric-Ciphers-非对称加密" class="headerlink" title="Asymmetric Ciphers  非对称加密"></a>Asymmetric Ciphers  非对称加密</h3><p>和对称加密相对，“非对称”指的就是加密和解密用的是不同的密钥</p>
 <h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><p>典</p>
-<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
+<h4 id="其他的听都没听说过（"><a href="#其他的听都没听说过（" class="headerlink" title="其他的听都没听说过（"></a>其他的听都没听说过（</h4><h2 id="密码学的发展"><a href="#密码学的发展" class="headerlink" title="密码学的发展"></a>密码学的发展</h2><p><strong>时间节点</strong>：</p>
+<ul>
+<li><p>远古时期（？）到1949年被划分为 <strong>古典密码时期</strong>，这个时期的密码还只停留在语言的层面上，常见的有对字符的置换、代换、轮换等等</p>
+</li>
+<li><p>1949后到1976年属于<strong>近代密码时期</strong>，大概是两次世界大战的缘故，密码学发展迅猛，密码破译难度大幅增加</p>
+</li>
+<li><p>以Diffie-Hellman协议为起始点至今，属于<strong>现代密码学时期</strong>，现在的以公钥密码为代表，面向通信以及计算<br><del>（其实我不知道什么是Diffie-Hellman）</del></p>
+</li>
+</ul>
+<p>到了现代，密码学已经和数学分不开了，<br>为了尽可能地使密码难以被破解，一般都会将密码基于某个<strong>数学困难问题</strong><br>而 数学困难问题 就是直到目前世界上仍没有出现一个有效的解决方案的问题</p>
+<p>例如<strong>大整数分解，离散对数，双线性对，格</strong>等等<br>（按我个人的理解就是都是NP类问题？）</p>
+<p>其中，前两个可能会被量子算法攻破，所以都说RSA迟早会die（</p>
+<h3 id="现代密码学发展分支"><a href="#现代密码学发展分支" class="headerlink" title="现代密码学发展分支"></a>现代密码学发展分支</h3><p>（水平有限，直接抄ppt了）</p>
+<h4 id="公钥加密"><a href="#公钥加密" class="headerlink" title="公钥加密"></a>公钥加密</h4><p><strong>动机</strong>：在对称加密应用中，双方需要提前预设好相同的密钥。能不能在双方无协商好的密钥的前提下，完成保密通信？<br><strong>起源</strong>：Whitfield Diffie, Martin E. Hellman, New Directions in Cryptography, IEEE<br>Transactions on Information Theory, Vol. 22, No. 6, 1976.（图灵奖）<br><strong>能力</strong>：用户的公钥公开、私钥秘密保存，加密者采用用户的公钥对数据加密而后传输对应的密文，只有私钥的拥有者能够解密数据</p>
+<h4 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h4><p><strong>动机</strong>：能不能模拟日常生活中的签字？<br><strong>起源</strong>：Rivest R L, Shamir A, Adleman L. A method for obtaining digital signatures and public-key<br>cryptosystems[J]. Communications of the ACM, 1978, 21(2): 120-126.（图灵奖）<br><strong>能力</strong>：用户的公钥公开、私钥秘密保存，用户采用其私钥对数据签名，任意验证者均可采用该用户公钥进行验证，确保是指定用户的签名</p>
+<h4 id="秘密共享"><a href="#秘密共享" class="headerlink" title="秘密共享"></a>秘密共享</h4><h4 id="不经意传输"><a href="#不经意传输" class="headerlink" title="不经意传输"></a>不经意传输</h4><h4 id="可证明安全"><a href="#可证明安全" class="headerlink" title="可证明安全"></a>可证明安全</h4><h4 id="安全计算"><a href="#安全计算" class="headerlink" title="安全计算"></a>安全计算</h4><h4 id="零知识证明"><a href="#零知识证明" class="headerlink" title="零知识证明"></a>零知识证明</h4><h4 id="ORAM"><a href="#ORAM" class="headerlink" title="ORAM"></a>ORAM</h4><h2 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h2><h3 id="完善保密性"><a href="#完善保密性" class="headerlink" title="完善保密性"></a>完善保密性</h3><p>若对于 $ \forall m_0,m_1\in M(\left|m_0\right|&#x3D;\left|m_1\right| ),\forall c \in C  $<br>有 $ Pr(E(k,m_0)&#x3D;c)&#x3D;Pr(E(k,m_1)&#x3D;c) $<br>其中 $ k \in K $ 是随机的<br>则对称加密体制 ( E , D ) 是<strong>完善保密</strong>的</p>
+<p><strong>攻击者获得密文，然而明文是等概率的，进而推测不出明文的信息</strong></p>
+<p>设 ( E , D ) 是定义在 ( k , M , C ) 上的加密方案，如果它是完善保密的，则 $ \left| K \right| \geq \left| M \right| $</p>
+<p>如果一个加密体制具有完善保密性，那么密钥数量至少要和明文数量一样多</p>
+<p>但是问题来了，如果要将一个长度为M的文件发送出去，需要至少M长度的密钥K加密才能满足完善加密性，而要把这个密钥K发送给对方，又需要另外一个长度至少为M的密钥K’，而K’又需要另一个K’’……</p>
+<p>这样递归下去不就子子孙孙无穷尽了吗？<br>因此，在现实中是<strong>不存在</strong>真的完善保密的方案的</p>
+<p><del>上述的都是老师ppt上的东西，详细内容我之后再另写</del></p>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><p>感觉我这篇写完都能直接当大作业交上去了（</p>
+
       
     </div>
 
