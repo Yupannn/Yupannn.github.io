@@ -17,16 +17,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yupannn.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yupannn.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
+    <meta name="description" content="RSA常见攻击方式Elementary Attacks共模攻击(Common Modulus 重复使用模数N)$ (N,e_1),(N,e_2) $ 分别是 Alice 和 Bob 所持有的公钥，$ d_1,d_2 $ 分别是对应的私钥 1已知 $ c_1&#x3D;encrypt(N,e_1,m) c_2&#x3D;encrypt(N,e_2,m) $ 若互素，$ gcd(e_1,e_2)&amp;#x">
+<meta property="og:type" content="article">
 <meta property="og:title" content="RSA">
 <meta property="og:url" content="https://yupannn.github.io/2025/02/28/RSA/index.html">
 <meta property="og:site_name" content="盂盘的blog">
+<meta property="og:description" content="RSA常见攻击方式Elementary Attacks共模攻击(Common Modulus 重复使用模数N)$ (N,e_1),(N,e_2) $ 分别是 Alice 和 Bob 所持有的公钥，$ d_1,d_2 $ 分别是对应的私钥 1已知 $ c_1&#x3D;encrypt(N,e_1,m) c_2&#x3D;encrypt(N,e_2,m) $ 若互素，$ gcd(e_1,e_2)&amp;#x">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-28T15:46:04.000Z">
-<meta property="article:modified_time" content="2025-02-28T15:46:04.409Z">
+<meta property="article:modified_time" content="2025-05-26T06:06:16.444Z">
 <meta property="article:author" content="Yupannn">
+<meta property="article:tag" content="ctf">
 <meta name="twitter:card" content="summary">
 
 
@@ -96,7 +99,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -109,6 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA%E5%B8%B8%E8%A7%81%E6%94%BB%E5%87%BB%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">RSA常见攻击方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Elementary-Attacks"><span class="nav-number">2.1.</span> <span class="nav-text">Elementary Attacks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB-Common-Modulus-%E9%87%8D%E5%A4%8D%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%95%B0N"><span class="nav-number">2.1.1.</span> <span class="nav-text">共模攻击(Common Modulus 重复使用模数N)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Blinding-%E7%9B%B2%E7%AD%BE%E5%90%8D"><span class="nav-number">2.1.2.</span> <span class="nav-text">Blinding 盲签名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Low-Private-Exponent-%E7%A7%81%E9%92%A5%E8%BF%87%E5%B0%8F"><span class="nav-number">2.2.</span> <span class="nav-text">Low Private Exponent 私钥过小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Low-Public-Exponent-%E5%85%AC%E9%92%A5%E8%BF%87%E5%B0%8F"><span class="nav-number">2.3.</span> <span class="nav-text">Low Public Exponent  公钥过小</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Coppersmith"><span class="nav-number">2.3.1.</span> <span class="nav-text">Coppersmith</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.4.</span> <span class="nav-text">一些示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp%E6%B3%84%E9%9C%B2"><span class="nav-number">2.5.</span> <span class="nav-text">dp泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#e%E8%B6%85%E5%B0%8F"><span class="nav-number">2.6.</span> <span class="nav-text">e超小</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -127,7 +131,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -185,6 +189,13 @@
 
       <time title="创建时间：2025-02-28 23:46:04" itemprop="dateCreated datePublished" datetime="2025-02-28T23:46:04+08:00">2025-02-28</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-26 14:06:16" itemprop="dateModified" datetime="2025-05-26T14:06:16+08:00">2025-05-26</time>
+    </span>
 
   
 </div>
@@ -195,7 +206,38 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody"><h1 id><a href="#" class="headerlink" title></a></h1><h1 id="RSA常见攻击方式"><a href="#RSA常见攻击方式" class="headerlink" title="RSA常见攻击方式"></a>RSA常见攻击方式</h1><h2 id="Elementary-Attacks"><a href="#Elementary-Attacks" class="headerlink" title="Elementary Attacks"></a>Elementary Attacks</h2><h3 id="共模攻击-Common-Modulus-重复使用模数N"><a href="#共模攻击-Common-Modulus-重复使用模数N" class="headerlink" title="共模攻击(Common Modulus 重复使用模数N)"></a>共模攻击(Common Modulus 重复使用模数N)</h3><p>$ (N,e_1),(N,e_2) $ 分别是 Alice 和 Bob 所持有的公钥，$ d_1,d_2 $ 分别是对应的私钥</p>
+<h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><p>已知 $ c_1&#x3D;encrypt(N,e_1,m) c_2&#x3D;encrypt(N,e_2,m) $</p>
+<p>若互素，$ gcd(e_1,e_2)&#x3D;1 $</p>
+<p>求出 $ e_1<em>s_1+e_2</em>s_2&#x3D;1 $ 的一组解，则 $ m&#x3D;e_1^{s_1}*e_2^{s_2} $</p>
+<p>证明：<br>$ c_1^{s_1}<em>c_2^{s_2}&#x3D;m^{d_1</em>s_1}<em>m^{d_2</em>s_2}&#x3D;m^{d_1<em>s_1+d_2</em>s_2}\equiv m \pmod N $</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">s, s1, s2 = gmpy2.gcdext(e1,e2)</span><br><span class="line">m=<span class="built_in">pow</span>(c1,s1,n)*<span class="built_in">pow</span>(c2,s2,n)%n</span><br></pre></td></tr></table></figure>
+<p>若不互素：<br>求出 $ e_1*s_1+e_2s_2&#x3D;gcd(e_1,e_2) $的一组解</p>
+<p>$ c_1^{s_1}*c_2^{s_2}&#x3D;m^{gcd(e_1,e_2)}\pmod N $</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">t, s1, s2 = gmpy2.gcdext(e1, e2)</span><br><span class="line">m = gmpy2.iroot(<span class="built_in">pow</span>(c1, s1, n)*<span class="built_in">pow</span>(c2, s2, n) % n, t)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><h3 id="Blinding-盲签名"><a href="#Blinding-盲签名" class="headerlink" title="Blinding 盲签名"></a>Blinding 盲签名</h3><p>Marvin 本来想要 Bob 给消息 M 签名，但 Bob 不签</p>
+<p>所以他随机取数 r ，计算$ M’&#x3D;r^eM $，现在 Bob 给 M’ 签了名：$ S’\equiv (M’)^d \pmod N $</p>
+<p>可计算得到 M 的签名 $ S&#x3D;(S’)&#x2F;r $</p>
+<p>验证：<br>$ S^e&#x3D;(S’)^e&#x2F;r^e\equiv (M’)^{ed}&#x2F;r^e\equiv (M’)&#x2F;r^e\equiv M \pmod N $</p>
+<h2 id="Low-Private-Exponent-私钥过小"><a href="#Low-Private-Exponent-私钥过小" class="headerlink" title="Low Private Exponent 私钥过小"></a>Low Private Exponent 私钥过小</h2><h2 id="Low-Public-Exponent-公钥过小"><a href="#Low-Public-Exponent-公钥过小" class="headerlink" title="Low Public Exponent  公钥过小"></a>Low Public Exponent  公钥过小</h2><h3 id="Coppersmith"><a href="#Coppersmith" class="headerlink" title="Coppersmith"></a>Coppersmith</h3><hr>
+<h2 id="一些示例"><a href="#一些示例" class="headerlink" title="一些示例"></a>一些示例</h2><h2 id="dp泄露"><a href="#dp泄露" class="headerlink" title="dp泄露"></a>dp泄露</h2><p>dp的定义为：</p>
+<p>$ dp \equiv d \mod （p-1） $</p>
+<p>dp包含了 d 和 p 的某种关系，一般情况下只要求出了它，就能顺带求出其他的值<br>证明如下：</p>
+<p>已知 $ dp \equiv d \mod (p-1),de \equiv 1 \mod (p-1)(q-1) $</p>
+<p>故 $ dp*e \equiv de \mod (p-1),de&#x3D;k_1(p-1)(q-1)+1 $</p>
+<p>$ dp*e&#x3D;k_2(p-1)+de&#x3D;k_2(p-1)+k_1(p-1)(q-1)+1&#x3D;(p-1)K+1 $</p>
+<p>而 $ 0&lt;&#x3D;dp&lt; p-1 $</p>
+<p>则 $ 0&lt; K&lt; e $</p>
+<p>只需要遍历 K 的值，找出一个刚好能除出来一个整数的值就行了<br>同时检查一下找出的 p 能否整除 n</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#已知dp的情况下：</span></span><br><span class="line"><span class="keyword">for</span> K <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,e) :</span><br><span class="line">    <span class="keyword">if</span> (dp*e-<span class="number">1</span>)//K==<span class="number">0</span> :</span><br><span class="line">        p=(dp*e-<span class="number">1</span>)//K</span><br><span class="line">        <span class="keyword">if</span> n%p==<span class="number">0</span> :</span><br><span class="line">            q=n//p</span><br><span class="line">            phi=(p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">            d=gmpy2.inverse(e,phi)</span><br><span class="line">            flag=<span class="built_in">pow</span>(m,d,n)</span><br></pre></td></tr></table></figure>
+
+<h2 id="e超小"><a href="#e超小" class="headerlink" title="e超小"></a>e超小</h2><p>如果 e 特别小，就直接遍历 n 然后乘方<br>gmpy2里的iroot会返回一个元组(root,exact)，root为计算得到的方根，exact为true或false，表示计算是否精确<br>可以用来判断结果是否为整数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">e=<span class="number">3</span></span><br><span class="line">k=<span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    flag=gmpy2.iroot(k*n+c,e)</span><br><span class="line">    <span class="keyword">if</span> m[<span class="number">1</span>]==<span class="number">0</span> :</span><br><span class="line">        <span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+
+
+
     </div>
 
     
@@ -203,16 +245,22 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ctf/" rel="tag"># ctf</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/02/28/DES/" rel="prev" title="DES">
-                  <i class="fa fa-angle-left"></i> DES
+                <a href="/2025/02/28/lattice/" rel="prev" title="lattice格密码">
+                  <i class="fa fa-angle-left"></i> lattice格密码
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2025/03/07/LinuxExperience/" rel="next" title="Linux初体验">
+                  Linux初体验 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -224,7 +272,6 @@
 
 
 
-    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -286,10 +333,6 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
-
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Yupannn","repo":"gitalk","client_id":"Ov23liBUY4NUIIKvt4Py","client_secret":"e20da7cc86be386102fb4faacccdd9519649aee2","admin_user":"Yupannn","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","labels":"gitalk","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"a5cb5b8e10bee935e7aed9240be243b3"}</script>
-<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>
